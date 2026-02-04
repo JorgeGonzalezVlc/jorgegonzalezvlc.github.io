@@ -1,5 +1,5 @@
 ---
-title: Análisis forense de logs y tráfico de red – Sherlock Meerkat
+title: Análisis de logs y tráfico de red 
 date: 2026-02-04
 categories: [Defensive]
 tags: [SOC, Log Analysis, Incident Response, PCAP, Web Attack]
@@ -8,9 +8,9 @@ tags: [SOC, Log Analysis, Incident Response, PCAP, Web Attack]
 
 ## Introducción
 
-En este laboratorio *Sherlock Meerkat* se realiza un análisis forense básico a partir de **logs de seguridad** y un **archivo PCAP**, con el objetivo de detectar actividad maliciosa, identificar al atacante y confirmar si existió compromiso del sistema.
+En este laboratorio se realiza un análisis de **logs de seguridad** y un **archivo PCAP**, con el objetivo de detectar actividad maliciosa, identificar al atacante y confirmar si existió compromiso del sistema.
 
-El escenario simula el flujo de trabajo de un **SOC L1**, donde la detección inicial se realiza mediante logs y posteriormente se valida el impacto mediante análisis de tráfico de red.
+El escenario simula el flujo de trabajo, donde la detección inicial se realiza mediante logs y posteriormente se valida el impacto mediante análisis de tráfico de red.
 
 ---
 

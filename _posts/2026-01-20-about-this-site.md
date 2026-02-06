@@ -3,7 +3,6 @@ title: Mi primer post
 date: 2026-01-20
 categories: [General]
 tags: [cybersecurity, learning]
-description: Short summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsumShort summary of the post.loren ipsum
 ---
 
 This site documents my hands-on learning journey in cybersecurity.

@@ -6,7 +6,7 @@ tags: [HTB, Web Exploitation, LFI, SSH, Privilege Escalation]
 ---
 
 
-`# 📧 Automatización de correo con n8n
+# 📧 Automatización de correo con n8n
 
 En este proyecto vamos a crear una herramienta de automatización de correo electrónico utilizando **n8n**.
 

@@ -1,6 +1,6 @@
 ---
 title: Investigación de incidente – Compromiso en NIX01 (Linux)
-date: 2026-02-14
+date: 2026-02-12
 categories: [Defensive]
 tags: [SOC, SIEM, Log Analysis, Incident Response, Linux, Privilege Escalation, Threat Hunting]
 ---

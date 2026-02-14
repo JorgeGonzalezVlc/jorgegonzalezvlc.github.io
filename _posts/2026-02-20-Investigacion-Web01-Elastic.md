@@ -5,7 +5,6 @@ categories: [Defensive]
 tags: [SOC, SIEM, Elastic, Log Analysis, Linux, Incident Response, Threat Hunting, Web Security]
 ---
 
-## Resumen
 
 Durante el análisis del host **WEB01** se identificó una secuencia de eventos que indica la **ejecución remota de comandos a través del servidor web**, seguida de actividades de reconocimiento interno, acceso a información sensible y preparación para escalada de privilegios.
 

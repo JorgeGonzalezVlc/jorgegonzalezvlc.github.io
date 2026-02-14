@@ -5,7 +5,7 @@ categories: [Defensive]
 tags: [SOC, Phishing]
 ---
 
-Se analizó un correo electrónico que suplantaba a PayPal tras ser recibido por un usuario. El análisis confirmó que se trataba de un intento de phishing cuyo objetivo era redirigir a la víctima a un enlace malicioso con el fin de robar credenciales.
+Se analizó un correo electrónico que suplantaba a PayPal tras ser recibido por un usuario. El análisis confirmó que se trataba de un intento de phishing cuyo objetivo era redirigir a la víctima a un enlace malicioso con el fin de robar credenciales
 
 <img width="799" height="559" alt="imagen" src="https://github.com/user-attachments/assets/bdfab230-4ff6-4e72-8427-8b8d486e7f22" />
 

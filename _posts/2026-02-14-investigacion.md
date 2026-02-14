@@ -116,7 +116,7 @@ Este comportamiento no forma parte de la operativa normal del sistema y es consi
 Se observó la ejecución periódica del comando: ``df -k``
 
 
-El patrón de ejecución regular y el contexto del proceso indican que esta actividad está asociada a tareas automáticas de monitorización o mantenimiento del sistema (posiblemente del servicio TeamCity).
+El patrón de ejecución regular  (cada 2 minutos) y el contexto del proceso indican que esta actividad está asociada a tareas automáticas de monitorización o mantenimiento del sistema (posiblemente del servicio TeamCity).
 
 No se observan indicios de interacción manual ni relación con la actividad maliciosa.
 

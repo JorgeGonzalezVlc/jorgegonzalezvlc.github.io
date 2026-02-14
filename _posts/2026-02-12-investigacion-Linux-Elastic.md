@@ -5,8 +5,7 @@ categories: [Defensive]
 tags: [SOC, SIEM, Elastic, Log Analysis, Incident Response, Linux, Privilege Escalation, Threat Hunting]
 ---
 
-
-## Resumen del incidente
+Análisis de un incidente en Linux donde múltiples eventos del SIEM revelan actividad de post-explotación y preparación de escalada de privilegios.
 
 Durante el análisis de eventos en el SIEM se detectó una secuencia de alertas en el host **NIX01** que indicaban actividad anómala.  
 Los eventos mostraban comportamientos típicos de **post-compromiso**, incluyendo reconocimiento del sistema, enumeración de privilegios, ejecución de herramientas de explotación y preparación para una posible escalada de privilegios.

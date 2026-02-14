@@ -1,6 +1,6 @@
 ---
 title: Investigación de incidente – Compromiso en host WIN01 (Windows)
-date: 2026-02-16
+date: 2026-02-13
 categories: [Defensive]
 tags: [SOC, SIEM, Elastic, Log Analysis, Windows, Incident Response, Threat Hunting]
 ---

@@ -1,6 +1,6 @@
 ---
 title: Automatización inteligente de correos con n8n y OpenAI
-date: 2026-02-12
+date: 2026-02-09
 categories: [Automatización]
 tags: [n8n, OpenAI, Gmail API, Workflow Automation, Email Automation, Docker, AI Agents, Inteligencia Artificial]
 ---

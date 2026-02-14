@@ -5,7 +5,7 @@ categories: [Defensive]
 tags: [SOC, SIEM, Elastic, Log Analysis, Windows, Incident Response, Threat Hunting]
 ---
 
-## Resumen
+Investigación completa de un host Windows comprometido, reconstruyendo la cadena de ataque desde la enumeración inicial hasta la persistencia y el intento de robo de credenciales.
 
 Durante el análisis del host **WIN01** se identificaron múltiples alertas asociadas a actividades maliciosas que abarcan distintas fases del ciclo de ataque.
 

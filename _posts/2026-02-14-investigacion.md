@@ -1,9 +1,10 @@
 ---
-layout: post
-title: "Investigación de actividad post-compromiso y posible escalada de privilegios en Linux"
-date: 2026-02-15
-categories: [Defensive, SIEM, SOC, Linux]
+title: Investigación de incidente en Linux – Enumeración y escalada de privilegios
+date: 2026-02-14
+categories: [Defensive]
+tags: [SOC, SIEM, Log Analysis, Incident Response, Linux, Privilege Escalation, Threat Hunting]
 ---
+
 
 ## Resumen del incidente
 

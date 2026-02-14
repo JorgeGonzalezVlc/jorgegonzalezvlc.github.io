@@ -1,6 +1,6 @@
 ---
 title: Análisis de correo de phishing
-date: 2026-01-31
+date: 2026-01-21
 categories: [Defensive]
 tags: [SOC, Phishing]
 ---

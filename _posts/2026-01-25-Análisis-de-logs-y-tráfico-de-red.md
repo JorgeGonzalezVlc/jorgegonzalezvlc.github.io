@@ -1,6 +1,6 @@
 ---
 title: Análisis de logs y tráfico de red 
-date: 2026-02-04
+date: 2026-01-25
 categories: [Defensive]
 tags: [SOC, Log Analysis, Incident Response, PCAP, Web Attack]
 ---

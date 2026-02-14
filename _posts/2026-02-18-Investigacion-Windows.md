@@ -7,16 +7,20 @@ tags: [SOC, SIEM, Log Analysis, Windows, Incident Response, Threat Hunting]
 
 ## Resumen
 
-Durante el análisis del host **WIN01** se identificaron múltiples alertas relacionadas con actividades de reconocimiento, acceso no autorizado, ejecución de herramientas maliciosas y mecanismos de persistencia.  
+Durante el análisis del host **WIN01** se identificaron múltiples alertas asociadas a actividades maliciosas que abarcan distintas fases del ciclo de ataque.
 
-La correlación de eventos confirma un escenario de **compromiso completo del sistema**, incluyendo:
+La correlación temporal y contextual de los eventos confirma un **compromiso completo del sistema**, incluyendo:
 
-- Enumeración inicial
-- Ataques de fuerza bruta
-- Acceso privilegiado
+- Enumeración inicial sin autenticación
+- Ataques de fuerza bruta sobre servicios SMB
+- Acceso remoto con privilegios elevados
+- Enumeración post-compromiso
 - Ejecución de malware
-- Persistencia
-- Intentos de robo de credenciales
+- Establecimiento de persistencia
+- Intentos de robo de credenciales mediante acceso a LSASS
+
+El incidente refleja un escenario realista de intrusión en un entorno Windows empresarial.
+
 
 ---
 
@@ -30,17 +34,20 @@ Este comportamiento es característico de **Null Session**, técnica utilizada p
 
 **Clasificación: True Positive**
 
+<img width="1322" height="503" alt="imagen" src="https://github.com/user-attachments/assets/26676af1-d667-4608-a5aa-18f8d8394627" />
+
+
 ---
 
 ### 2. Acceso legítimo al proceso LSASS
 
-Se observó la creación del proceso `lsass.exe` iniciado por `wininit.exe` bajo el contexto **SYSTEM**.
+Se observó la creación del proceso `lsass.exe` iniciado por `wininit.exe` bajo el contexto **NT AUTHORITY\SYSTEM**.
 
-La relación padre-hijo y el contexto del proceso corresponden con el comportamiento normal del sistema operativo.
+La relación padre-hijo, la ruta del binario y el contexto de ejecución corresponden con el comportamiento normal del sistema operativo durante el arranque y la gestión de autenticación.
+
+No se detectaron parámetros anómalos, acceso externo ni técnicas de inyección de memoria.
 
 **Clasificación: False Positive**
-
-<img src="https://github.com/user-attachments/assets/0b8bb9d0-3a33-4533-81f1-1d675bd24b86" />
 
 ---
 
@@ -48,11 +55,13 @@ La relación padre-hijo y el contexto del proceso corresponden con el comportami
 
 Se registraron múltiples intentos fallidos de autenticación desde la IP **10.10.16.14** en un corto periodo de tiempo.
 
-El alto volumen de eventos y el patrón repetitivo indican un ataque de **Password Spraying o Brute Force**.
+El patrón observado —alto volumen, origen único, ventana temporal reducida y uso repetitivo de credenciales— es característico de un **ataque automatizado de fuerza bruta o password spraying**.
+
 
 **Clasificación: True Positive**
 
-<img src="https://github.com/user-attachments/assets/c42310ea-9ccf-4430-910f-6dbc41d4a55f" />
+<img width="1078" height="464" alt="imagen" src="https://github.com/user-attachments/assets/a097a620-6b18-4546-906c-67ed39581e16" />
+
 
 ---
 
@@ -61,24 +70,32 @@ El alto volumen de eventos y el patrón repetitivo indican un ataque de **Passwo
 El usuario ejecutó comandos para acceder a: ``ConsoleHost_history.txt``
 
 
-Este archivo contiene comandos anteriores y puede revelar credenciales o información sensible.  
-La actividad forma parte de la fase de **reconocimiento post-compromiso**.
+Este archivo almacena el historial de comandos ejecutados en sesiones de PowerShell.  
+El acceso a este recurso suele realizarse durante fases de **enumeración post-compromiso**, ya que puede revelar:
+
+- Credenciales en texto plano
+- Scripts ejecutados previamente
+- Información sensible sobre tareas administrativas
+
+El uso de `winPEAS.ps1` confirma que esta actividad forma parte de una **enumeración automatizada del sistema**.
 
 **Clasificación: True Positive**
 
-<img src="https://github.com/user-attachments/assets/88873fbc-3ec4-4604-97c8-16980a0e8134" />
+<img width="1332" height="533" alt="imagen" src="https://github.com/user-attachments/assets/fc6f545b-bd59-46f3-b4f5-d4f09fdc6971" />
+
 
 ---
 
 ### 5. Acceso privilegiado desde IP sospechosa
 
 Se detectó un inicio de sesión remoto exitoso (Logon Type 10 – RDP) con la cuenta **Administrator** desde la IP **10.10.16.14**, previamente asociada a actividad maliciosa.
+El evento confirma el establecimiento de una **sesión interactiva remota con privilegios elevados**, lo que indica que el atacante logró comprometer credenciales administrativas.
 
-Este evento confirma **acceso interactivo con privilegios elevados**.
 
 **Clasificación: True Positive**
 
-<img src="https://github.com/user-attachments/assets/2b92fa82-18ef-424e-a87c-1645cdc0393c" />
+<img width="1472" height="490" alt="imagen" src="https://github.com/user-attachments/assets/bdb66854-bfcb-4997-adf2-b71a21a3992c" />
+
 
 ---
 
@@ -87,12 +104,15 @@ Este evento confirma **acceso interactivo con privilegios elevados**.
 Se identificó la creación del archivo: ``C:\Users\Administrator\AppData\Local\revshell1337.exe``
 
 
-El directorio **AppData\Local** es comúnmente utilizado por atacantes para almacenar payloads.  
-El nombre del archivo sugiere una **reverse shell**.
+El directorio **AppData\Local** es comúnmente utilizado por atacantes para almacenar payloads, ya que permite ejecución sin privilegios adicionales y suele estar excluido de controles estrictos.
+
+El nombre del archivo sugiere una **reverse shell**, indicando preparación para comunicación remota con infraestructura atacante.
+
 
 **Clasificación: True Positive**
 
-<img src="https://github.com/user-attachments/assets/39bc1991-53b4-4434-9d30-b6354bd037d6" />
+<img width="1345" height="443" alt="imagen" src="https://github.com/user-attachments/assets/4074ebdb-b016-474c-9873-0c7d4fec7f77" />
+
 
 ---
 
@@ -104,7 +124,8 @@ Este mecanismo permite mantener acceso persistente al sistema tras el compromiso
 
 **Clasificación: True Positive**
 
-<img src="https://github.com/user-attachments/assets/f2e999d5-758b-41e1-a890-2b082590a4d7" />
+<img width="1325" height="230" alt="imagen" src="https://github.com/user-attachments/assets/0ebb0d4e-eed3-4928-bf50-c596c5baa9b8" />
+
 
 ---
 
@@ -112,11 +133,13 @@ Este mecanismo permite mantener acceso persistente al sistema tras el compromiso
 
 Se observó el proceso `powershell.exe` accediendo a la memoria de `lsass.exe`.
 
-El acceso a LSASS es una técnica comúnmente utilizada para **Credential Dumping** (por ejemplo, Mimikatz).
+El acceso a LSASS por procesos no autorizados es un indicador crítico de **Credential Dumping**, técnica utilizada para extraer hashes o credenciales en texto plano (por ejemplo, mediante Mimikatz).
+
 
 **Clasificación: True Positive**
 
-<img src="https://github.com/user-attachments/assets/9fc0e470-c5fc-457f-a831-53643ca06c71" />
+<img width="1358" height="485" alt="imagen" src="https://github.com/user-attachments/assets/b3703f9b-7934-4fc7-b465-97c855a60471" />
+
 
 ---
 
@@ -127,8 +150,6 @@ Posteriormente se observó `svchost.exe` accediendo a LSASS bajo el contexto SYS
 Este comportamiento forma parte de las operaciones normales del sistema y no presenta indicadores de actividad maliciosa.
 
 **Clasificación: False Positive**
-
-<img src="https://github.com/user-attachments/assets/2e340162-97b0-43e8-be05-fb4c93fbe3a2" />
 
 ---
 

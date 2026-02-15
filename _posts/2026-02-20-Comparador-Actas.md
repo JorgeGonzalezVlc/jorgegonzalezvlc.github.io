@@ -243,9 +243,7 @@ Crear este proyecto me enseñó mucho sobre:
 
 ## 📚 Recursos y documentación completa
 
-- **Repositorio GitHub**: [github.com/TU_USUARIO/lector-actas](https://github.com)
-- **Documentación técnica**: Ver README.md
-- **Issues conocidos**: [GitHub Issues](https://github.com)
+- **Repositorio GitHub**: [[github.com/TU_USUARIO/lector-actas](https://github.com)](https://github.com/JorgeGonzalezVlc/python/tree/main/Lector%20de%20actas)
 - **Whisper docs**: [github.com/openai/whisper](https://github.com/openai/whisper)
 - **Ollama docs**: [ollama.ai/docs](https://ollama.ai)
 

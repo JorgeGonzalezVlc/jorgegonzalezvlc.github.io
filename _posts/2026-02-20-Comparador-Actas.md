@@ -112,12 +112,10 @@ Si el archivo no cambia, no lo reproceso.
 
 ### Ejemplo de informe generado
 
-```
+
 📊 ANÁLISIS DE FIDELIDAD DEL ACTA
 
 <img width="1190" height="252" alt="imagen" src="https://github.com/user-attachments/assets/6684ed33-d5d8-4ecc-b607-f17e6993adb2" />
-
-```
 
 ---
 

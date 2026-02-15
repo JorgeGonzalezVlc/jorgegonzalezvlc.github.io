@@ -2,8 +2,8 @@
 layout: post
 title: "Lector de Actas con IA: Verificando la fidelidad de documentos oficiales"
 date: 2024-02-20
-categories: [Automatizacion]
-tags: [whisper, ollama, mistral, nlp, transcripcion, proyectos, ia, python]
+categories: [Automatización]
+tags: [whisper, ollama, mistral, nlp, transcripcion, proyectos, ia, python, AI Agents, Inteligencia Artificial]
 ---
 
 # 🎙️ Lector de Actas con IA

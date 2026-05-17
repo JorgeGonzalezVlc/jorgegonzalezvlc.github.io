@@ -3,9 +3,6 @@ title: Análisis de correo de phishing
 date: 2026-01-08
 categories: [Defensive]
 tags: [SOC, Phishing]
-image:
-  path: /assets/img/Phising.png
-  alt: Phishing Detector
 ---
 
 Se analizó un correo electrónico que suplantaba a PayPal tras ser recibido por un usuario. El análisis confirmó que se trataba de un intento de phishing cuyo objetivo era redirigir a la víctima a un enlace malicioso con el fin de robar credenciales

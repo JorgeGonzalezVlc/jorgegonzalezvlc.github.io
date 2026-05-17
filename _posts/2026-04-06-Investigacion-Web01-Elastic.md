@@ -1,6 +1,6 @@
 ---
 title: Investigación de incidente – Compromiso en host WEB01 (Linux)
-date: 2026-02-14
+date: 2026-04-06
 categories: [Defensive]
 tags: [SOC, SIEM, Elastic, Log Analysis, Linux, Incident Response, Threat Hunting, Web Security]
 ---

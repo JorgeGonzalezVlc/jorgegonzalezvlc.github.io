@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Sistema de deteccion de phishing inteligente"
-date: 2024-05-16
+date: 2026-05-16
 categories: [Automatización]
 tags: [Docker, VirusTotal, FastAPI, Gmail API, proyectos, ia, python, AI Agents, Inteligencia Artificial]
 ---

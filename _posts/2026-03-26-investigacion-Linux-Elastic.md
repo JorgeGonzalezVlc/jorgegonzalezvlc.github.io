@@ -3,6 +3,12 @@ title: Investigación de incidente – Compromiso en NIX01 (Linux)
 date: 2026-03-26
 categories: [Defensive]
 tags: [SOC, SIEM, Elastic, Log Analysis, Incident Response, Linux, Privilege Escalation, Threat Hunting]
+image:
+  path: /assets/img/elastic-logo.png
+  alt: Phishing Detector
+  width: 500
+  height: 280
+  class: sz-contain
 ---
 
 Análisis de un incidente en Linux donde múltiples eventos del SIEM revelan actividad de post-explotación y preparación de escalada de privilegios.

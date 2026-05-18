@@ -3,6 +3,12 @@ title: Análisis de logs y tráfico de red
 date: 2026-01-20
 categories: [Defensive]
 tags: [SOC, Log Analysis, Incident Response, PCAP, Web Attack]
+image:
+  path: /assets/img/wireshark.png
+  alt: Phishing Detector
+  width: 500
+  height: 280
+  class: sz-contain
 ---
 
 

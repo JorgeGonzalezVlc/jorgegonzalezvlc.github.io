@@ -4,6 +4,12 @@ title: "Lector de Actas con IA: Verificando la fidelidad de documentos oficiales
 date: 2026-04-20
 categories: [Automatización]
 tags: [whisper, ollama, mistral, nlp, transcripcion, proyectos, ia, python, AI Agents, Inteligencia Artificial]
+image:
+  path: /assets/img/comparar documentos.png
+  alt: Phishing Detector
+  width: 500
+  height: 280
+  class: sz-contain
 ---
 
 # 🎙️ Lector de Actas con IA

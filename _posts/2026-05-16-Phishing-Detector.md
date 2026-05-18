@@ -4,6 +4,12 @@ title: "Sistema de deteccion de phishing inteligente"
 date: 2026-05-16
 categories: [Automatización]
 tags: [Docker, VirusTotal, FastAPI, Gmail API, proyectos, ia, python, AI Agents, Inteligencia Artificial]
+image:
+  path: /assets/img/Phising.png
+  alt: Phishing Detector
+  width: 500
+  height: 280
+  class: sz-contain
 ---
 
 

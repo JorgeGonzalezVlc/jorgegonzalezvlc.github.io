@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Active Directory: Kerberoasting"
-date: 2026-01-08
+date: 2026-06-08
 categories: [Offensive, Defensive]
 tags: [AD, Kerberos, Kerberoasting]
 image:

@@ -5,7 +5,7 @@ date: 2026-01-08
 categories: [Offensive, Defensive]
 tags: [AD, Kerberos, Kerberoasting]
 image:
-  path: /assets/img/Phising.png
+  path: /assets/img/kerberoasting.png
   alt: Phishing Detector
   width: 500
   height: 280

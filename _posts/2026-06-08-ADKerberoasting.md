@@ -52,6 +52,9 @@ Otra manera de conseguir desencriptar el hash sería con [John the Ripper](https
 sudo john spn.txt --fork=4 --format=krb5tgs --wordlist=passwords.txt --pot=results.pot
 ```
 
+<img width="842" height="617" alt="imagen" src="https://github.com/user-attachments/assets/2766ad86-2f7f-4b48-95a9-72436588822e" />
+
+
 ---
 
 ## Prevención
@@ -64,7 +67,7 @@ Otra opción sería usar Group Managed Service Accounts (GMSA), las cuales son c
 
 ## Detección
 
-Cuando se solicita un TGS, el cual es emitido por Kerberos para ver si se puede acceder a un SPN, se genera un evento 4769. La dificultad es que también se genera cuando un usuario intenta entrar a un servicio de forma legítima, de forma que lo siguiente en lo que nos podemos fijar es en el tipo de encriptación. Si estamos en un entorno que usa AES y de pronto vemos un evento usando RC4, esto debería advertirnos.
+Cuando se solicita un TGS, el cual es emitido por Kerberos para ver si se puede acceder a un SPN, se genera un evento ==4769==. La dificultad es que también se genera cuando un usuario intenta entrar a un servicio de forma legítima, de forma que lo siguiente en lo que nos podemos fijar es en el tipo de encriptación. Si estamos en un entorno que usa AES y de pronto vemos un evento usando RC4, esto debería advertirnos.
 
 Otro modo de detección sería ver si un usuario genera más de cierto número de TGS en un breve periodo de tiempo, puesto que no sería normal un usuario solicitando por ejemplo 10 tickets en menos de 20 segundos.
 

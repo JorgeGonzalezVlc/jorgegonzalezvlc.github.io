@@ -1,10 +1,12 @@
-title: Active Directory: Kerberoasting
+---
+layout: post
+title: "Active Directory: Kerberoasting"
 date: 2026-01-08
 categories: [Offensive, Defensive]
 tags: [AD, Kerberos, Kerberoasting]
 image:
-  path: /assets/img/
-  alt: Kerberoasting
+  path: /assets/img/Phising.png
+  alt: Phishing Detector
   width: 500
   height: 280
   class: sz-contain

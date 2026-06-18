@@ -5,7 +5,7 @@ date: 2026-06-17
 categories: [Homelab, Infraestructura]
 tags: [Proxmox, Homelab, Nginx, Flask, Cloudflare, Linux, Python]
 image:
-  path: /assets/img/webserver.png
+  path: /assets/img/proxmox_webserver.png
   alt: WebServer
 ---
 

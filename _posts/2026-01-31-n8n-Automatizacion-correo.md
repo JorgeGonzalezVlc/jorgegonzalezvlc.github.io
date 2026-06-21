@@ -1,11 +1,12 @@
 ---
-title: Automatización inteligente de correos con n8n y OpenAI
+layout: post
+title: "Automatización inteligente de correos con n8n y OpenAI"
 date: 2026-01-31
-categories: [Automatización]
-tags: [n8n, OpenAI, Gmail API, Workflow Automation, Email Automation, Docker, AI Agents, Inteligencia Artificial]
+categories: [IA & Automatización]
+tags: [IA, Docker, Python, AI Agents, n8n]
 image:
   path: /assets/img/n8n.png
-  alt: Phishing Detector
+  alt: n8n OpenAI
   width: 500
   height: 280
   class: sz-contain

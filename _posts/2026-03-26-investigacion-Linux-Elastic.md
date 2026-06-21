@@ -1,11 +1,12 @@
 ---
-title: Investigación de incidente – Compromiso en NIX01 (Linux)
+layout: post
+title: "Investigación de incidente – Compromiso en NIX01 (Linux)"
 date: 2026-03-26
-categories: [Defensive]
-tags: [SOC, SIEM, Elastic, Log Analysis, Incident Response, Linux, Privilege Escalation, Threat Hunting]
+categories: [Blue Team]
+tags: [SIEM, Elastic, Forense, Linux, Threat Hunting, Blue Team]
 image:
   path: /assets/img/elastic-logo.png
-  alt: Phishing Detector
+  alt: Elastic SIEM
   width: 500
   height: 280
   class: sz-contain

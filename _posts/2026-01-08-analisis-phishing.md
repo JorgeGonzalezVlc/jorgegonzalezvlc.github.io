@@ -1,8 +1,9 @@
 ---
-title: Análisis de correo de phishing
+layout: post
+title: "Análisis de correo de phishing"
 date: 2026-01-08
-categories: [Defensive]
-tags: [SOC, Phishing]
+categories: [Blue Team]
+tags: [Phishing, Forense, Blue Team]
 image:
   path: /assets/img/phishing2.png
   alt: Phishing Detector

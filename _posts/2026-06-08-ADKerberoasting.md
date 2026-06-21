@@ -2,11 +2,11 @@
 layout: post
 title: "Active Directory: Kerberoasting"
 date: 2026-06-08
-categories: [Offensive, Defensive]
-tags: [AD, Kerberos, Kerberoasting]
+categories: [Red Team, Blue Team]
+tags: [Active Directory, Kerberoasting, Red Team, Blue Team, Windows]
 image:
   path: /assets/img/kerberoasting.png
-  alt: Phishing Detector
+  alt: Kerberoasting
   width: 500
   height: 280
   class: sz-contain

@@ -12,8 +12,9 @@ image:
   class: sz-contain
 ---
 
-Proyecto personal donde aplico tres técnicas de Machine Learning sobre logs reales de mi laboratorio de ciberseguridad. 
-La idea es la siguiente: tengo Wazuh corriendo en casa con un par de agentes conectados y quería ver qué podía sacar con ML sin tocar datos de internet. Podría haber descargado un dataset de [HuggingFace](https://huggingface.co/datasets) pero prefería una experiencia más realista aunque los datos sean más limitados.
+Aqui mi primer proyecto de Machine Learning sobre logs reales de mi laboratorio de ciberseguridad.
+
+La idea es la siguiente: tengo Wazuh corriendo en casa con un par de agentes conectados (hay un post que lo explica) y quería ver qué podía sacar con ML sin tocar datos de internet. Podría haber descargado un dataset de [HuggingFace](https://huggingface.co/datasets) pero prefería una experiencia más realista aunque los datos sean más limitados.
 
 Es un entorno de pruebas, así que los resultados hay que leerlos con ese contexto en mente.
 
@@ -150,17 +151,18 @@ El **Cluster 2** es el más interesante. Al ser el grupo más pequeño y con may
 
 ---
 
-## Próximos pasos
+## Conclusión
 
-- Acumular más logs dejando Wazuh correr durante semanas para tener un dataset más rico
-- Usar etiquetas manuales de analistas para un Random Forest más realista
-- Investigar el Cluster 2 manualmente para ver qué tienen en común esos eventos
-- Añadir un dashboard simple con FastAPI para ver los resultados en tiempo real
+Aplicar ML a logs de seguridad reales tiene un valor distinto al de trabajar con datasets preparados. Los datos son más sucios, más limitados y menos balanceados, pero para aprender esta muy bien
+
+El resultado más útil no es la precisión del modelo sino el cambio que esto supone. Cambias el tenedr que revisar 3966 eventos y su lugar revisas 199. 
+
+Fijas la atencion en lo que el modelo te presenta
+
+El código está disponible en [GitHub](https://github.com/JorgeGonzalezVlc/SOC-ML) por si quieres echar un ojo.
 
 ---
-
 ## Stack
-
 - Python 3.13
 - scikit-learn
 - pandas

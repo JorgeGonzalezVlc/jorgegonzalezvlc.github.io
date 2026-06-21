@@ -5,7 +5,7 @@ date: 2026-07-10
 categories: [IA & Automatización, Blue Team]
 tags: [ML, Wazuh, Python, Isolation Forest, Random Forest, KMeans, Blue Team, SIEM]
 image:
-  path: /assets/img/socml.png
+  path: /assets/img/ml.png
   alt: SOC-ML
   width: 500
   height: 280

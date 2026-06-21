@@ -15,7 +15,7 @@ Hace un tiempo desarrollé una web para una asociación cultural, algo sencillo:
 
 Cual fue mi sorpresa al intentar desplegarlas, resulta que mi hosting compartido no soportaba Python y la solución que me ofrecía mi proveedor era pasarme a un VPS por 18€/mes.
 
-Teniendo ya el mini PC con Proxmox del [post anterior](/posts/proxmox-iniciamos), la respuesta era obvia. Lenvantarlo en mi propio PC.
+Teniendo ya el mini PC con Proxmox del [post anterior](/posts/proxmox), la respuesta era obvia. Lenvantarlo en mi propio PC.
 
 ## VM y no contenedor LXC
 

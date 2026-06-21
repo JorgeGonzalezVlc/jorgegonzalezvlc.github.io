@@ -2,8 +2,8 @@
 layout: post
 title: "Sistema de detección de phishing inteligente"
 date: 2026-05-16
-categories: [IA & Automatización]
-tags: [IA, Python, Docker, Phishing, AI Agents]
+categories: [IA & Automatización, Blue Team]
+tags: [IA, Python, Docker, Phishing, AI Agents, Blue Team]
 image:
   path: /assets/img/Phising.png
   alt: Phishing Detector

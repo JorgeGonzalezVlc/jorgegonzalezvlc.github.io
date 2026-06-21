@@ -112,7 +112,8 @@ python main.py
 
 El modelo analizó los 3966 eventos y marcó **199 como anómalos** (5% de contaminación configurado). Lo interesante es que no solo detecta eventos de nivel alto — hay anomalías en niveles 3 y 4 que un analista podría ignorar manualmente. Eso es exactamente el valor de este enfoque: el modelo detecta combinaciones raras de features, no solo criticidad alta.
 
-![anomalia](outputs/anomaly_detection.png)
+<img width="2083" height="740" alt="anomaly_detection" src="https://github.com/user-attachments/assets/8e2721bc-5ff1-4ae1-9f34-35aa32c0898f" />
+
 
 ---
 
@@ -126,7 +127,8 @@ La precisión del 100% es llamativa pero tiene una explicación clara: las etiqu
 
 En un entorno real usaría etiquetas manuales para que el modelo tenga un reto más real. En un laboratorio de pruebas este resultado es esperable.
 
-![features](outputs/feature_importance.png)
+<img width="1200" height="750" alt="feature_importance" src="https://github.com/user-attachments/assets/5ba7445c-02ff-4729-9b54-b7f8c5a0631b" />
+
 
 ---
 
@@ -143,7 +145,8 @@ Agrupé los eventos en 4 clusters:
 
 El **Cluster 2** es el más interesante. Al ser el grupo más pequeño y con mayor dispersión en la visualización PCA, indica eventos que no encajan bien en ningún patrón claro. En un SOC real sería el primer grupo a revisar manualmente.
 
-![clusters](outputs/clusters.png)
+<img width="1200" height="900" alt="clusters" src="https://github.com/user-attachments/assets/8a66b6da-2918-464c-bfb1-bbae64d93eec" />
+
 
 ---
 

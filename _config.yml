@@ -16,7 +16,7 @@ timezone: Europe/Madrid
 
 title: Jorge González # the main title
 
-tagline: Cybersecurity · AI & Automation · Systems  # it will display as the subtitle
+tagline: Cybersecurity · AI & Automation · Systems   # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   Cybersecurity portfolio documenting hands-on learning, practical labs, certifications, and technical insights across offensive and defensive security.

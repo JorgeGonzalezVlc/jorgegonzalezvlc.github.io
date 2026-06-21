@@ -1,11 +1,12 @@
 ---
-title: Investigación de incidente – Compromiso en host WIN01 (Windows)
+layout: post
+title: "Investigación de incidente – Compromiso en host WIN01 (Windows)"
 date: 2026-03-28
-categories: [Defensive]
-tags: [SOC, SIEM, Elastic, Log Analysis, Windows, Incident Response, Threat Hunting]
+categories: [Blue Team]
+tags: [SIEM, Elastic, Forense, Windows, Threat Hunting, Blue Team]
 image:
   path: /assets/img/elastic-logo.png
-  alt: Phishing Detector
+  alt: Elastic SIEM
   width: 500
   height: 280
   class: sz-contain

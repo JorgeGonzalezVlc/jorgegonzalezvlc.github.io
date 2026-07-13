@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Servidor web en casa: Nginx, Flask y Cloudflare Zero Trust"
-date: 2026-06-25
+date: 2026-06-21
 categories: [Sistemas]
 tags: [Proxmox, Homelab, Linux, Python, Docker]
 image:

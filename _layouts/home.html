@@ -100,7 +100,11 @@ layout: default
 
 <div id="post-list" class="post-grid">
   {% for post in posts %}
-    {%- capture post_cats -%}{% for c in post.categories %}{{ c | slugify }} {% endfor %}{%- endcapture -%}
+    {%- comment -%}
+      Categories and tags both count for the area filters, so a post can appear in
+      several areas (e.g. an AD attack lab categorised Blue Team and tagged Red Team).
+    {%- endcomment -%}
+    {%- capture post_cats -%}{% for c in post.categories %}{{ c | slugify }} {% endfor %}{% for t in post.tags %}{{ t | slugify }} {% endfor %}{%- endcapture -%}
     <article class="card-wrapper card post-card" data-cats="{{ post_cats | strip }}">
       <a href="{{ post.url | relative_url }}" class="post-preview">
         {% if post.image %}

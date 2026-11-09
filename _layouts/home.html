@@ -58,12 +58,25 @@ layout: default
       Aquí documento ese trabajo, de principio a fin.
     </p>
 
-    <ul class="intro-areas">
-      <li><a href="{{ '/categories/blue-team/' | relative_url }}"><i class="fas fa-shield-halved"></i>Blue Team y SOC</a></li>
-      <li><a href="{{ '/categories/sistemas/' | relative_url }}"><i class="fas fa-server"></i>Sistemas</a></li>
-      <li><a href="{{ '/categories/desarrollo/' | relative_url }}"><i class="fas fa-code"></i>Desarrollo e IA</a></li>
-      <li><a href="{{ '/categories/grc/' | relative_url }}"><i class="fas fa-scale-balanced"></i>GRC</a></li>
-      <li><a href="{{ '/categories/red-team/' | relative_url }}"><i class="fas fa-user-secret"></i>Red Team</a></li>
+    {%- comment -%}
+      Area filters. Each one filters the project grid below (assets/js/home-filter.js);
+      without JavaScript they still work as plain links to the category page.
+      data-cats lists the category slugs that belong to the area.
+    {%- endcomment -%}
+    {% assign slug_blue = 'Blue Team' | slugify %}
+    {% assign slug_sis = 'Sistemas' | slugify %}
+    {% assign slug_dev = 'Desarrollo' | slugify %}
+    {% assign slug_ia = 'IA & Automatización' | slugify %}
+    {% assign slug_grc = 'GRC' | slugify %}
+    {% assign slug_red = 'Red Team' | slugify %}
+
+    <ul class="intro-areas" id="area-filters" aria-label="Filtrar proyectos por área">
+      <li><a href="#proyectos" data-filter="todos" data-cats="" aria-pressed="true"><i class="fas fa-layer-group"></i>Todos</a></li>
+      <li><a href="{{ '/categories/' | append: slug_blue | append: '/' | relative_url }}" data-filter="blue-team" data-cats="{{ slug_blue }}" aria-pressed="false"><i class="fas fa-shield-halved"></i>Blue Team y SOC</a></li>
+      <li><a href="{{ '/categories/' | append: slug_sis | append: '/' | relative_url }}" data-filter="sistemas" data-cats="{{ slug_sis }}" aria-pressed="false"><i class="fas fa-server"></i>Sistemas</a></li>
+      <li><a href="{{ '/categories/' | append: slug_dev | append: '/' | relative_url }}" data-filter="desarrollo-ia" data-cats="{{ slug_dev }} {{ slug_ia }}" aria-pressed="false"><i class="fas fa-code"></i>Desarrollo e IA</a></li>
+      <li><a href="{{ '/categories/' | append: slug_grc | append: '/' | relative_url }}" data-filter="grc" data-cats="{{ slug_grc }}" aria-pressed="false"><i class="fas fa-scale-balanced"></i>GRC</a></li>
+      <li><a href="{{ '/categories/' | append: slug_red | append: '/' | relative_url }}" data-filter="red-team" data-cats="{{ slug_red }}" aria-pressed="false"><i class="fas fa-user-secret"></i>Red Team</a></li>
     </ul>
 
     <div class="intro-actions">
@@ -79,12 +92,16 @@ layout: default
     </dl>
   </section>
 
-  <h2 class="section-heading">Últimos proyectos</h2>
+  <h2 class="section-heading" id="proyectos">
+    <span id="filter-label">Últimos proyectos</span>
+    <span class="filter-count" id="filter-count" aria-live="polite"></span>
+  </h2>
 {% endif %}
 
 <div id="post-list" class="post-grid">
   {% for post in posts %}
-    <article class="card-wrapper card post-card">
+    {%- capture post_cats -%}{% for c in post.categories %}{{ c | slugify }} {% endfor %}{%- endcapture -%}
+    <article class="card-wrapper card post-card" data-cats="{{ post_cats | strip }}">
       <a href="{{ post.url | relative_url }}" class="post-preview">
         {% if post.image %}
           {% assign src = post.image.path | default: post.image %}
@@ -120,6 +137,10 @@ layout: default
   {% endfor %}
 </div>
 
+<p class="filter-empty" id="filter-empty" hidden>Todavía no hay proyectos publicados en esta área.</p>
+
 {% if paginator.total_pages > 1 %}
   {% include post-paginator.html %}
 {% endif %}
+
+<script src="{{ '/assets/js/home-filter.js' | relative_url }}" defer></script>

@@ -149,7 +149,8 @@ pwa:
     deny_paths:
       # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
 
-paginate: 10
+# All projects on a single home page, so the area filters can show every post
+paginate: 100
 
 # The base URL of your site
 baseurl: ""

@@ -1,0 +1,148 @@
+---
+# Custom stylesheet — overrides the theme's default entry point.
+# Imports the Chirpy theme and then applies a modern, minimal restyle
+# (indigo accent · dark-first · flat rounded cards · modern type).
+# Everything below is plain CSS so it cannot break the Sass build.
+---
+
+@use "main";
+
+/* ============================================================
+   1. Accent color (indigo) — overrides Chirpy CSS variables
+   ============================================================ */
+
+/* Light mode */
+html:not([data-mode]),
+html[data-mode="light"] {
+  --link-color: #4f46e5;              /* indigo-600 */
+  --link-underline-color: #c7d2fe;    /* indigo-200 */
+  --sidebar-active-color: #4f46e5;
+  --nav-cursor-color: #4f46e5;
+  --tag-hover: #e0e7ff;               /* indigo-100 */
+  --input-focus-border-color: #6366f1;
+  --btn-backtotop-color: #4f46e5;
+}
+
+/* Dark mode (default) */
+html[data-mode="dark"] {
+  --link-color: #a5b4fc;              /* indigo-300, legible sobre fondo oscuro */
+  --link-underline-color: #4f46e5;
+  --sidebar-active-color: #a5b4fc;
+  --nav-cursor-color: #818cf8;        /* indigo-400 */
+  --tag-hover: #312e81;               /* indigo-900 */
+  --input-focus-border-color: #818cf8;
+  --btn-backtotop-color: #a5b4fc;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+}
+
+/* ============================================================
+   2. Typography — stack de sistema moderno + jerarquía
+   ============================================================ */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  letter-spacing: 0.1px;
+}
+
+h1, h2, h3, h4, h5, h6,
+#site-title,
+.post-title,
+.card-title {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.post-content {
+  line-height: 1.75;
+}
+
+/* Un poco más de aire en el contenido */
+.post-content > p {
+  margin-bottom: 1.1rem;
+}
+
+/* ============================================================
+   3. Marca / sidebar — toque índigo y avatar cuidado
+   ============================================================ */
+
+#site-title a {
+  color: #818cf8; /* fallback si el navegador no soporta clip de texto */
+  background: linear-gradient(90deg, #818cf8, #6366f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#avatar {
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.35);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+#avatar:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.6);
+}
+
+/* Indicador de navegación activo */
+#sidebar .nav-link.active {
+  color: var(--sidebar-active-color) !important;
+}
+
+/* ============================================================
+   4. Tarjetas de post — planas, redondeadas, con hover sutil
+   ============================================================ */
+
+.card {
+  border-radius: 14px !important;
+  border: 1px solid var(--card-border-color, rgba(128, 128, 128, 0.16));
+  box-shadow: none !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18) !important;
+  border-color: var(--link-color);
+}
+
+/* Imágenes de portada dentro de las tarjetas, sin esquinas duras */
+.card .preview-img img {
+  border-radius: 14px 14px 0 0;
+}
+
+/* ============================================================
+   5. Etiquetas, botones y detalles
+   ============================================================ */
+
+.post-tag {
+  border-radius: 999px;
+  transition: all 0.15s ease;
+}
+
+.post-tag:hover {
+  background: var(--tag-hover) !important;
+  color: var(--link-color) !important;
+  text-decoration: none;
+}
+
+/* Enlaces del contenido con subrayado más fino */
+.post-content a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* Botón "volver arriba" coherente con el acento */
+#back-to-top {
+  border-radius: 14px;
+}
+
+/* Barra de progreso de lectura en índigo */
+#toc-wrapper .toc .toc-link::before,
+.post-content .table-wrapper > table tbody tr:hover {
+  border-color: var(--link-color);
+}

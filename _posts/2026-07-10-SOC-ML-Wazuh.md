@@ -5,11 +5,8 @@ date: 2026-07-10
 categories: [IA & Automatización, Blue Team]
 tags: [ML, Wazuh, Python, Isolation Forest, Random Forest, KMeans, Blue Team, SIEM]
 image:
-  path: /assets/img/ml.png
-  alt: SOC-ML
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/SOC-ML-Wazuh.webp
+  alt: "SOC-ML — Machine learning sobre logs de Wazuh"
 ---
 
 Aqui mi primer proyecto de Machine Learning sobre logs reales de mi laboratorio de ciberseguridad.

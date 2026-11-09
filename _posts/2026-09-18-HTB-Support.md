@@ -6,8 +6,8 @@ categories: [Red Team, HackTheBox]
 tags: [HTB, Active Directory, SMB, LDAP, BloodHound, RBCD, Kerberos, Red Team]
 description: "Writeup de la máquina retirada Support de HackTheBox: credenciales embebidas en una herramienta interna, enumeración con LDAP y BloodHound, y escalada a administrador del dominio mediante delegación basada en recursos (RBCD)."
 image:
-  path: /assets/img/posts/htb-support/cover.webp
-  alt: Enumeración de Active Directory con BloodHound en la máquina Support
+  path: /assets/img/posts/covers/HTB-Support.webp
+  alt: "HTB Support — Credenciales embebidas y RBCD"
 ---
 
 Sigo compaginando mis laboratorios propios de Active Directory con máquinas de [HackTheBox](https://www.hackthebox.com/), que me sirven para enfrentarme a escenarios que no se me habrían ocurrido. **Support** es una máquina **retirada** y de dificultad *Easy*, pero junta dos cosas muy reales: **credenciales escondidas en una herramienta interna** y un camino de escalada por **configuración de delegación en AD**.

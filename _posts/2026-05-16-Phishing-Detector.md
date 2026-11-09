@@ -5,11 +5,8 @@ date: 2026-05-16
 categories: [IA & Automatización, Blue Team]
 tags: [IA, Python, Docker, Phishing, AI Agents, Blue Team]
 image:
-  path: /assets/img/Phising.png
-  alt: Phishing Detector
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/Phishing-Detector.webp
+  alt: "Detector de phishing — Gmail, LLM y VirusTotal en Docker"
 ---
 
 # 🛡️ Phishing Detector

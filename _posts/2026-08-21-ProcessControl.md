@@ -6,8 +6,8 @@ categories: [Desarrollo, Python]
 tags: [Python, Flask, SQLAlchemy, PyMuPDF, Freelance, Automatización, SQLite]
 description: "Proyecto freelance: aplicación web en Flask que gestiona cursos, alumnos, ausencias y prácticas de un centro de formación y genera automáticamente la documentación oficial en PDF rellenando las plantillas de la administración."
 image:
-  path: /assets/img/posts/processcontrol/cover.webp
-  alt: Panel de control de ProcessControl con datos de demostración
+  path: /assets/img/posts/covers/ProcessControl.webp
+  alt: "ProcessControl — Aplicación a medida · Flask y PDF"
 ---
 
 Este proyecto es distinto a los demás del portfolio, porque **no lo hice para un laboratorio, sino para un cliente real**: un centro de formación que imparte cursos subvencionados (certificados de profesionalidad).

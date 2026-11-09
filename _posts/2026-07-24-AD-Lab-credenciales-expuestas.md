@@ -6,8 +6,8 @@ categories: [Blue Team, Active Directory]
 tags: [Active Directory, Kerberos, AS-REP Roasting, GPP Passwords, Detection Engineering, PowerShell, Event Logs, Blue Team, Red Team]
 description: "Laboratorio propio de AD: reproduzco AS-REP Roasting, GPP Passwords y credenciales en recursos compartidos y en atributos de usuario, y construyo para cada ataque su detección en PowerShell a partir de Event IDs reales."
 image:
-  path: /assets/img/posts/ad-lab-credenciales/cover.webp
-  alt: Rubeus ejecutando AS-REP Roasting contra el dominio adlab.local
+  path: /assets/img/posts/covers/AD-Lab-credenciales-expuestas.webp
+  alt: "AD Attack Detection I — Credenciales expuestas y su detección"
 ---
 
 Después del [post de Kerberoasting](/posts/ADKerberoasting/) me quedé con una sensación rara: había visto el ataque funcionar, pero no tenía claro qué *vería* un analista en el SOC. Así que convertí el laboratorio en un proyecto más serio, **AD Attack Detection**. La idea es reproducir los ataques típicos contra Active Directory y, para cada uno, construir su detección con lo que trae Windows de serie: el Visor de eventos y PowerShell, sin SIEM de pago.

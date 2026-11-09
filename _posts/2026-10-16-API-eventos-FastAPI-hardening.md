@@ -6,8 +6,8 @@ categories: [Desarrollo, Sistemas]
 tags: [Python, FastAPI, API REST, systemd, Hardening, Linux, IA, Anthropic, bcrypt, Blue Team]
 description: "Backend en FastAPI para un evento real: RSVP, galería con moderación, panel y minijuegos, con autenticación por hash, puntuación calculada en servidor e IA tolerante a fallos. Y cómo lo endurecí con las opciones de seguridad de systemd hasta bajar el nivel de exposición."
 image:
-  path: /assets/img/posts/api-eventos/cover.webp
-  alt: Documentación Swagger de la API de eventos
+  path: /assets/img/posts/covers/API-eventos-FastAPI-hardening.webp
+  alt: "API de eventos — FastAPI, IA y hardening con systemd"
 ---
 
 Me pidieron montar la web de un evento (en concreto, una boda) y lo aproveché para construir algo que tenía ganas de hacer bien: una **API REST en FastAPI** en producción, con usuarios reales, autodocumentada y endurecida a nivel de sistema. Este post va de dos cosas que me importan mucho: **diseñar la API con seguridad desde el principio** y **endurecer el servicio** una vez desplegado.

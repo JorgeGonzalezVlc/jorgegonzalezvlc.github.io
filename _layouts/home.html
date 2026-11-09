@@ -1,0 +1,125 @@
+---
+layout: default
+---
+
+{%- comment -%}
+  Custom home layout (based on Chirpy 7.6 `home.html`).
+  Adds an intro section on the first page and renders posts as a card grid.
+  The pagination / pinned-post logic is kept identical to the theme's.
+{%- endcomment -%}
+
+{% include lang.html %}
+
+{% assign all_pinned = site.posts | where: 'pin', 'true' %}
+{% assign all_normal = site.posts | where_exp: 'item', 'item.pin != true and item.hidden != true' %}
+
+{% assign posts = '' | split: '' %}
+
+{% assign visible_start = paginator.page | minus: 1 | times: paginator.per_page %}
+{% assign visible_end = visible_start | plus: paginator.per_page %}
+
+{% if all_pinned.size > visible_start %}
+  {% if all_pinned.size > visible_end %}
+    {% assign pinned_size = paginator.per_page %}
+  {% else %}
+    {% assign pinned_size = all_pinned.size | minus: visible_start %}
+  {% endif %}
+
+  {% for i in (visible_start..all_pinned.size) limit: pinned_size %}
+    {% assign posts = posts | push: all_pinned[i] %}
+  {% endfor %}
+{% else %}
+  {% assign pinned_size = 0 %}
+{% endif %}
+
+{% assign normal_size = paginator.posts | size | minus: pinned_size %}
+
+{% if normal_size > 0 %}
+  {% if pinned_size > 0 %}
+    {% assign normal_start = 0 %}
+  {% else %}
+    {% assign normal_start = visible_start | minus: all_pinned.size %}
+  {% endif %}
+
+  {% assign normal_end = normal_start | plus: normal_size | minus: 1 %}
+
+  {% for i in (normal_start..normal_end) %}
+    {% assign posts = posts | push: all_normal[i] %}
+  {% endfor %}
+{% endif %}
+
+{% if paginator.page == 1 %}
+  <section id="intro" aria-label="Presentación">
+    <p class="intro-eyebrow">Portfolio · Ciberseguridad y sistemas</p>
+    <h1 class="intro-title">Hola, soy Jorge.</h1>
+    <p class="intro-lead">
+      Técnico de ciberseguridad y sistemas. Monto laboratorios para reproducir y detectar ataques,
+      administro mi propia infraestructura en producción y desarrollo herramientas con Python e IA.
+      Aquí documento ese trabajo, de principio a fin.
+    </p>
+
+    <ul class="intro-areas">
+      <li><a href="{{ '/categories/blue-team/' | relative_url }}"><i class="fas fa-shield-halved"></i>Blue Team y SOC</a></li>
+      <li><a href="{{ '/categories/sistemas/' | relative_url }}"><i class="fas fa-server"></i>Sistemas</a></li>
+      <li><a href="{{ '/categories/desarrollo/' | relative_url }}"><i class="fas fa-code"></i>Desarrollo e IA</a></li>
+      <li><a href="{{ '/categories/grc/' | relative_url }}"><i class="fas fa-scale-balanced"></i>GRC</a></li>
+      <li><a href="{{ '/categories/red-team/' | relative_url }}"><i class="fas fa-user-secret"></i>Red Team</a></li>
+    </ul>
+
+    <div class="intro-actions">
+      <a class="btn-primary-solid" href="{{ '/about/' | relative_url }}">Sobre mí</a>
+      <a class="btn-ghost" href="https://github.com/{{ site.github.username }}" target="_blank" rel="noopener"><i class="fab fa-github"></i>GitHub</a>
+      <a class="btn-ghost" href="https://www.linkedin.com/in/jorge-gonz%C3%A1lez-gonz%C3%A1lez-5740614b/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i>LinkedIn</a>
+    </div>
+
+    <dl class="intro-stats">
+      <div><dt>{{ site.posts.size }}</dt><dd>proyectos documentados</dd></div>
+      <div><dt>5</dt><dd>certificaciones</dd></div>
+      <div><dt>UOC</dt><dd>Máster en Ciberseguridad</dd></div>
+    </dl>
+  </section>
+
+  <h2 class="section-heading">Últimos proyectos</h2>
+{% endif %}
+
+<div id="post-list" class="post-grid">
+  {% for post in posts %}
+    <article class="card-wrapper card post-card">
+      <a href="{{ post.url | relative_url }}" class="post-preview">
+        {% if post.image %}
+          {% assign src = post.image.path | default: post.image %}
+          {% if post.media_subpath %}
+            {% unless src contains '://' %}
+              {% assign src = post.media_subpath | append: '/' | append: src | replace: '///', '/' | replace: '//', '/' %}
+            {% endunless %}
+          {% endif %}
+          {% assign alt = post.image.alt | xml_escape | default: 'Imagen de portada' %}
+          <div class="post-cover">
+            <img src="{{ src | relative_url }}" alt="{{ alt }}" loading="lazy">
+          </div>
+        {% endif %}
+
+        <div class="card-body">
+          <h3 class="card-title">{{ post.title }}</h3>
+
+          <p class="card-text">{% include post-summary.html %}</p>
+
+          <div class="post-meta">
+            {% include datetime.html date=post.date lang=lang %}
+            {% if post.categories.size > 0 %}
+              <span class="meta-sep" aria-hidden="true">·</span>
+              <span class="post-cat">{{ post.categories | first }}</span>
+            {% endif %}
+            {% if post.pin %}
+              <span class="post-pin" title="Destacado"><i class="fas fa-thumbtack"></i></span>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+    </article>
+  {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+  {% include post-paginator.html %}
+{% endif %}

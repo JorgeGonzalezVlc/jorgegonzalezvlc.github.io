@@ -7,8 +7,8 @@ tags: [Active Directory, DCSync, Golden Ticket, Kerberos Delegation, GPO, Mimika
 description: "Segunda parte del laboratorio de AD: abuso de permisos sobre GPOs, DCSync, Golden Ticket y Constrained Delegation (S4U), con su evidencia en el DC y AD-ThreatDetector, un detector en PowerShell que genera un informe diario."
 pin: true
 image:
-  path: /assets/img/posts/ad-lab-dominio/cover.webp
-  alt: Mimikatz generando un Golden Ticket en el laboratorio adlab.local
+  path: /assets/img/posts/covers/AD-Lab-dominio-comprometido.webp
+  alt: "AD Attack Detection II — DCSync, Golden Ticket y delegación"
 ---
 
 En la [primera parte](/posts/AD-Lab-credenciales-expuestas/) el atacante encontraba credenciales mal guardadas. Ahora toca lo siguiente en una cadena de ataque real: con una cuenta de dominio ya comprometida, **escalar hasta controlar el dominio entero** y quedarse dentro de forma persistente.

@@ -1,0 +1,25 @@
+<!--
+  Dark by default: on a visitor's first visit (no saved preference) switch to dark.
+  Runs after the theme script and before the page is painted; any later choice
+  made with the theme switcher is saved by Chirpy and respected from then on.
+-->
+<script>
+  (function () {
+    try {
+      if (!localStorage.getItem('theme') && !localStorage.getItem('jg-theme-default')) {
+        localStorage.setItem('theme', 'dark');
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+        document.documentElement.setAttribute('data-theme-persisted', '');
+      }
+      localStorage.setItem('jg-theme-default', '1');
+    } catch (e) {}
+  })();
+</script>
+
+<!-- Custom head additions: modern typefaces (Inter for text, JetBrains Mono for code) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+>

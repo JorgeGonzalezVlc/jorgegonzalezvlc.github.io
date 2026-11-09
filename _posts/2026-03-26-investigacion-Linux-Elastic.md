@@ -5,11 +5,8 @@ date: 2026-03-26
 categories: [Blue Team]
 tags: [SIEM, Elastic, Forense, Linux, Threat Hunting, Blue Team]
 image:
-  path: /assets/img/elastic-logo.png
-  alt: Elastic SIEM
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/investigacion-Linux-Elastic.webp
+  alt: "Incidente en NIX01 — Investigación con Elastic SIEM · Linux"
 ---
 
 Análisis de un incidente en Linux donde múltiples eventos del SIEM revelan actividad de post-explotación y preparación de escalada de privilegios.

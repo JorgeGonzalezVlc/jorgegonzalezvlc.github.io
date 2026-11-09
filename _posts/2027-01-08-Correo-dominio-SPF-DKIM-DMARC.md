@@ -6,8 +6,8 @@ categories: [Sistemas, Blue Team]
 tags: [DNS, SPF, DKIM, DMARC, Correo, Antispoofing, Cloudflare, Deliverability, Blue Team]
 description: "Cómo configuré el correo de un dominio propio con recepción por Cloudflare Email Routing y envío autenticado: SPF, DKIM y DMARC para asegurar la entrega y evitar que suplanten la marca. Los tres registros que casi nadie configura bien."
 image:
-  path: /assets/img/posts/correo-dominio-spf-dkim-dmarc/cover.webp
-  alt: Registros DNS de correo de un dominio en Cloudflare
+  path: /assets/img/posts/covers/Correo-dominio-SPF-DKIM-DMARC.webp
+  alt: "SPF, DKIM y DMARC — Correo de dominio sin suplantación"
 ---
 
 Montar una web es fácil; que su **correo funcione bien y no lo puedan suplantar** ya no tanto. Configurando el dominio de un proyecto (una web para un grupo musical) me tocó dejar el correo en condiciones, y es un tema que mezcla sistemas y seguridad a partes iguales, así que lo documento.

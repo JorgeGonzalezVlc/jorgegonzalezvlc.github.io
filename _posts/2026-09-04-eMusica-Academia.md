@@ -6,8 +6,8 @@ categories: [Desarrollo, Python]
 tags: [Python, Flask, SQLAlchemy, Stripe, Webhooks, Nginx, Gunicorn, Cloudflare, Proxmox, Linux]
 description: "Plataforma web de formación musical en producción: área de alumnos, panel de administración, progreso, suscripciones recurrentes con Stripe vía webhooks, vídeo por CDN y despliegue en mi propio servidor sin abrir puertos."
 image:
-  path: /assets/img/posts/emusica-academia/cover.webp
-  alt: Área de alumno de e-Música Academia con cursos de ejemplo
+  path: /assets/img/posts/covers/eMusica-Academia.webp
+  alt: "e-Música Academia — Cursos por suscripción · Flask y Stripe"
 ---
 
 Antes que informático soy violonchelista, y desde hace tiempo tenía en la cabeza dar clases online "bien hechas": no un canal de vídeos sueltos, sino una academia con itinerarios, materiales descargables, seguimiento del progreso y suscripción. **e-Música Academia** es esa plataforma, y está en producción en `academia.e-musica.es`.

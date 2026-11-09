@@ -5,11 +5,8 @@ date: 2026-03-30
 categories: [Blue Team]
 tags: [SIEM, Elastic, Forense, Linux, Threat Hunting, Blue Team]
 image:
-  path: /assets/img/elastic-logo.png
-  alt: Elastic SIEM
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/Investigacion-Web01-Elastic.webp
+  alt: "Incidente en WEB01 — Investigación con Elastic SIEM · Web"
 ---
 
 

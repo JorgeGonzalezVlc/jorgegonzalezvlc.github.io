@@ -6,8 +6,8 @@ categories: [GRC]
 tags: [GRC, ENS, Análisis de riesgos, Cumplimiento, MAGERIT, RGPD, ISO 27001, Gobierno de la seguridad]
 description: "Recorrido práctico por un análisis de riesgos y la categorización de un sistema según el Esquema Nacional de Seguridad (ENS): inventario de activos, amenazas, probabilidad e impacto, nivel del sistema y selección de medidas del Anexo II."
 image:
-  path: /assets/img/posts/grc-analisis-riesgos-ens/cover.webp
-  alt: Tabla de análisis de riesgos con activos, amenazas, probabilidad e impacto
+  path: /assets/img/posts/covers/GRC-analisis-riesgos-ENS.webp
+  alt: "Análisis de riesgos ENS — Activos, amenazas y medidas"
 ---
 
 La ciberseguridad no es solo lo técnico. Buena parte del trabajo real (sobre todo en la administración pública española y en empresas que trabajan con ella) es **GRC**: *Governance, Risk & Compliance*. En el máster me ha tocado hacer un **análisis de riesgos y la categorización de un sistema según el ENS**, y quería dejarlo aquí porque complementa muy bien la parte de laboratorios: de nada sirve detectar un ataque si antes no sabes **qué estás protegiendo y cuánto importa**.

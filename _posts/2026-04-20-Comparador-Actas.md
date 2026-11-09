@@ -5,11 +5,8 @@ date: 2026-04-20
 categories: [IA & Automatización]
 tags: [IA, Python, LLM, AI Agents, NLP]
 image:
-  path: /assets/img/comparar-documentos.png
-  alt: Lector de Actas IA
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/Comparador-Actas.webp
+  alt: "Lector de actas con IA — Verificar documentos oficiales con LLMs"
 ---
 
 # 🎙️ Lector de Actas con IA

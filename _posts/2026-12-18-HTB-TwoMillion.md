@@ -6,8 +6,8 @@ categories: [Red Team, HackTheBox]
 tags: [HTB, Web Exploitation, API, Escalada de privilegios, Linux, OWASP, Red Team]
 description: "Writeup de la máquina retirada TwoMillion de HackTheBox: descubrir una API oculta en el JavaScript del cliente, encadenar fallos de control de acceso hasta ejecutar comandos y escalar a root mediante un CVE del kernel."
 image:
-  path: /assets/img/posts/htb-twomillion/cover.webp
-  alt: Shell obtenida en la máquina TwoMillion de HackTheBox
+  path: /assets/img/posts/covers/HTB-TwoMillion.webp
+  alt: "HTB TwoMillion — API oculta y escalada a root"
 ---
 
 Otra máquina **retirada** de [HackTheBox](https://www.hackthebox.com/), esta vez centrada en la parte web. **TwoMillion** me gustó porque el fallo de entrada es de los más reales que hay: **una API que confía en el cliente**. Como siempre, lo cuento desde el razonamiento y las lecciones defensivas (OWASP), no como una receta.

@@ -1,79 +1,50 @@
 ---
 layout: post
-title: "CueAnalytics: predecir el cierre de un espectáculo con machine learning"
+title: "CueAnalytics: anticipar el cierre de un espectáculo"
 date: 2026-11-06 10:00:00 +0200
-categories: [IA & Automatización, Data Science]
-tags: [IA, Machine Learning, Python, LightGBM, Series temporales, Calibración, Deep Learning, Análisis de supervivencia]
-description: "Proyecto propio de ciencia de datos: un modelo que estima, a partir de la taquilla semanal, la probabilidad de que una producción teatral cierre, validado sobre datos reales de Broadway con probabilidades calibradas y métricas honestas."
+categories: [IA & Automatización, Producto]
+tags: [IA, Producto, Artes escénicas, Emprendimiento]
+description: "Un producto propio que estoy lanzando junto a un socio: una alerta semanal que avisa a las productoras de qué espectáculos están en riesgo de cerrar, con tiempo suficiente para decidir."
 image:
-  path: /assets/img/posts/cueanalytics/cover.webp
-  alt: Presentación del producto CueAnalytics / Production Predictor
+  path: /assets/img/posts/covers/CueAnalytics.webp
+  alt: "CueAnalytics — Anticipar el cierre de un espectáculo"
 ---
 
-Este proyecto une mis dos mundos: la **música y el espectáculo**, de donde vengo, y la **ciencia de datos**, hacia donde voy. **CueAnalytics** (internamente *Production Predictor*) es una prueba de concepto que desarrollé junto a un socio para responder a una pregunta muy concreta del sector: **¿cuándo va a cerrar un espectáculo?**
+Este proyecto es diferente al resto del portfolio: **no es un laboratorio, es un producto**. CueAnalytics es una herramienta que estoy desarrollando y lanzando junto a un socio, y nace de juntar mis dos mundos: llevo años trabajando como músico en producciones de gran formato, y ahora me dedico a la tecnología y la IA.
 
-En teatro, cuando la taquilla ya no da para sostener una obra, la decisión de cerrar suele tomarse **tarde**: la gente que tiene que actuar (teatro, elenco, equipo, marketing) se entera con muy poco margen. La idea es dar una **señal temprana** con semanas de antelación.
-
-> Proyecto propio, con datos **públicos** de Broadway (TidyTuesday, 1985 – marzo 2020). No usa datos privados de ninguna producción.
+> CueAnalytics es una herramienta privada y comercial. Aquí solo cuento la idea a grandes rasgos; los detalles técnicos y del modelo no son públicos.
 {: .prompt-info }
 
 ---
 
-## Los datos
+## El problema
 
-Partí del histórico semanal de taquilla de Broadway: unas **47.000 filas**, con recaudación, aforo, precio medio y de qué obra y teatro es cada semana.
+En el teatro musical, cuando la taquilla ya no sostiene una obra, la decisión de cerrarla suele llegar **tarde**. Y quienes tienen que reaccionar se enteran con muy poco margen:
 
-![Exploración del dataset](/assets/img/posts/cueanalytics/01-dataset.webp){: .shadow }
-_Estructura del dataset: 47.524 semanas de taquilla_
+- **El teatro**, que tiene que renovar o liberar la sala.
+- **El elenco y el equipo**, con contratos y preavisos que no dan tiempo a organizarse.
+- **Marketing**, que lanza la última campaña cuando ya no puede cambiar nada.
 
-El trabajo de datos fue reconstruir, para cada obra, su **"run"** completo (de estreno a cierre) a partir de semanas sueltas, para poder razonar sobre su trayectoria.
+![El problema: los cierres se deciden demasiado tarde](/assets/img/posts/cueanalytics/01-problema.webp){: .shadow }
 
-![Evolución del precio medio por año](/assets/img/posts/cueanalytics/02-precio-medio.webp){: .shadow }
+## La idea
 
-![Temporadas por producción](/assets/img/posts/cueanalytics/03-temporadas.webp){: .shadow }
-_Las obras más longevas: El Fantasma de la Ópera, Chicago, El Rey León…_
+CueAnalytics lee cada semana la taquilla de los espectáculos en cartel y responde a **tres preguntas** sobre cada uno:
 
-## El reto de verdad: no hacer trampas
+1. **¿Está en riesgo?** Un semáforo de cierre a dos meses vista, explicado en lenguaje claro.
+2. **¿Cuánto va a recaudar?** Una previsión de taquilla con un escenario pesimista y otro optimista.
+3. **¿Aguantará el estreno?** Para las obras recién estrenadas, si van camino de durar.
 
-En un problema temporal como este, el error más fácil y más grave es la **fuga de información** (*data leakage*): usar para predecir la semana *t* algo que solo se sabe después. Puse una regla de oro, con un test que lo comprueba siempre:
+![Cada semana, tres respuestas sobre cada espectáculo](/assets/img/posts/cueanalytics/02-solucion.webp){: .shadow }
 
-> Cualquier característica de la semana *t* usa **solo** semanas ≤ *t* del mismo run.
+El resultado es una **alerta semanal**: un semáforo por espectáculo que permite actuar antes de que la tendencia sea evidente.
 
-Flags como "cerró por COVID" o "run corto" **no son features**: solo sirven para filtrar o analizar, porque dependen del final. La sinopsis tampoco, porque menciona premios y récords que son el resultado. Esto es lo que separa una métrica bonita y falsa de una útil.
-
-## Los modelos
-
-Comparé varios enfoques sobre el mismo problema:
-
-- **Modelos tabulares** (LightGBM, regresión logística) con características de la trayectoria de taquilla.
-- **Deep learning** (una GRU) para tratar la secuencia semanal.
-- **Análisis de supervivencia**, el marco natural de "¿cuánto le queda en cartel?".
-
-Lo importante no es solo acertar, sino que la **probabilidad signifique algo**. Una probabilidad del 70 % tiene que acertar, a la larga, el 70 % de las veces. Para eso apliqué **calibración isotónica**, pero solo cuando mejoraba de verdad fuera de muestra (medido con el *Brier score*).
-
-Y las métricas, honestas para un problema con pocos cierres por semana (clases desbalanceadas): **AUC-PR** y **Brier skill**, no la *accuracy*, que aquí engaña. Las decisiones de modelado se toman con **validación**; el conjunto de test **solo se reporta**, nunca se usa para elegir.
-
-![Tasa de éxito y métricas del modelo](/assets/img/posts/cueanalytics/04-tasa-exito.webp){: .shadow }
-
-## De las métricas al producto
-
-Un modelo no se le enseña a un productor con una curva AUC-PR. Por eso el resultado final son **dos lenguajes**: un informe técnico con todo el detalle, y una presentación para productores sin una sola palabra técnica, con un **semáforo** a 8 semanas.
-
-![Semáforo de riesgo de cierre](/assets/img/posts/cueanalytics/05-semaforo.webp){: .shadow }
-_Para cada obra, tres respuestas: ¿en riesgo?, ¿cuánto recaudará?, ¿seguirá el año que viene?_
-
-Para que se entienda el valor, lo acompañé de un caso real reconstruido semana a semana: cuánto se habría ganado de margen actuando con la antelación que da el aviso.
-
-![Caso real reconstruido semana a semana](/assets/img/posts/cueanalytics/06-caso-real.webp){: .shadow }
-
-Todo se presenta en un **dashboard en Streamlit** y en informes HTML autocontenidos, generados automáticamente desde los artefactos del entrenamiento.
+![El semáforo de riesgo](/assets/img/posts/cueanalytics/03-semaforo.webp){: .shadow }
 
 ---
 
 ## Lo que me llevo
 
-- **La parte difícil del ML no es el modelo, es no engañarse.** Evitar la fuga de información, validar bien y calibrar las probabilidades importa más que elegir el algoritmo de moda.
-- **Traducir el resultado es parte del trabajo.** El mismo modelo tiene que hablar con un técnico y con alguien de negocio; si no, no sirve de nada.
-- **El dominio importa.** Conocer el mundo del espectáculo me dio las preguntas correctas antes de tocar los datos.
+Más allá de la parte técnica, este proyecto me está enseñando algo que en los laboratorios no se aprende: **convertir una idea en algo que alguien quiera usar**. Hay que entender a fondo el problema del cliente, explicar el valor sin jerga y presentarlo a quien toma las decisiones.
 
-CueAnalytics es la dirección en la que quiero seguir especializándome: **IA aplicada a problemas reales**, de principio a fin, desde los datos hasta la decisión.
+Si trabajas en el sector y te interesa, toda la información está en [getcueanalytics.com](https://getcueanalytics.com).

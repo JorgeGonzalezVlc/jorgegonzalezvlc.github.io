@@ -5,11 +5,8 @@ date: 2026-01-08
 categories: [Blue Team]
 tags: [Phishing, Forense, Blue Team]
 image:
-  path: /assets/img/phishing2.png
-  alt: Phishing Detector
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/analisis-phishing.webp
+  alt: "Análisis de un correo de phishing — Cabeceras, enlaces e indicadores"
 ---
 
 Se analizó un correo electrónico que suplantaba a PayPal tras ser recibido por un usuario. El análisis confirmó que se trataba de un intento de phishing cuyo objetivo era redirigir a la víctima a un enlace malicioso con el fin de robar credenciales

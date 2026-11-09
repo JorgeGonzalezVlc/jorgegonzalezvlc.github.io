@@ -6,7 +6,7 @@ theme: jekyll-theme-chirpy
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: es
+lang: es-ES
 
 # Change to your timezone › https://zones.arilyn.cc
 timezone: Europe/Madrid
@@ -90,7 +90,7 @@ pageviews:
 #     light — Use the light color scheme
 #     dark — Use the dark color scheme
 #
-theme_mode: dark # [light | dark]
+theme_mode: # [light | dark] — left empty so the light/dark switcher is shown; dark is set as the default in _includes/metadata-hook.html
 
 # The CDN endpoint for media resources.
 # Notice that once it is assigned, the CDN url
@@ -104,7 +104,7 @@ avatar: /assets/img/avatar.webp
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
-social_preview_image: https://github.com/JorgeGonzalezVlc.png # string, local or CORS resources
+social_preview_image: /assets/img/og-card.png # string, local or CORS resources
 
 # boolean type, the global switch for TOC in posts.
 toc: true

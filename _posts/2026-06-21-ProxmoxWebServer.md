@@ -5,11 +5,8 @@ date: 2026-06-21
 categories: [Sistemas]
 tags: [Proxmox, Homelab, Linux, Python, Docker]
 image:
-  path: /assets/img/proxmox_webserver.png
-  alt: WebServer
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/ProxmoxWebServer.webp
+  alt: "Homelab II · Servidor web — Nginx, Flask y Cloudflare Zero Trust"
 ---
 
 ## La idea

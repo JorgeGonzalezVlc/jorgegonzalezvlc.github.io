@@ -5,11 +5,8 @@ date: 2026-03-28
 categories: [Blue Team]
 tags: [SIEM, Elastic, Forense, Windows, Threat Hunting, Blue Team]
 image:
-  path: /assets/img/elastic-logo.png
-  alt: Elastic SIEM
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/Investigacion-Windows-Elastic.webp
+  alt: "Incidente en WIN01 — Investigación con Elastic SIEM · Windows"
 ---
 
 Investigación completa de un host Windows comprometido, reconstruyendo la cadena de ataque desde la enumeración inicial hasta la persistencia y el intento de robo de credenciales.

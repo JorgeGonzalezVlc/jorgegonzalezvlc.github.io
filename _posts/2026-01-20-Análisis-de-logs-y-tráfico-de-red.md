@@ -5,11 +5,8 @@ date: 2026-01-20
 categories: [Blue Team]
 tags: [Forense, Log Analysis, PCAP, Blue Team]
 image:
-  path: /assets/img/wireshark.png
-  alt: Wireshark
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/Análisis-de-logs-y-tráfico-de-red.webp
+  alt: "Logs y tráfico de red — Forense con Wireshark y PCAP"
 ---
 
 

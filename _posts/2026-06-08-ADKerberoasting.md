@@ -5,11 +5,8 @@ date: 2026-06-08
 categories: [Red Team, Blue Team]
 tags: [Active Directory, Kerberoasting, Red Team, Blue Team, Windows]
 image:
-  path: /assets/img/kerberoasting.png
-  alt: Kerberoasting
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/ADKerberoasting.webp
+  alt: "Kerberoasting — Ataque y detección en Active Directory"
 ---
 
 # Kerberoasting

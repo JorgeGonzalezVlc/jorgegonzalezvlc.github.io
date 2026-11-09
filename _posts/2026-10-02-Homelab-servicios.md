@@ -6,8 +6,8 @@ categories: [Sistemas]
 tags: [Proxmox, Homelab, Linux, Docker, LXC, ZFS, Jellyfin, Nextcloud, Syncthing, Nube privada]
 description: "Tercera entrega del homelab sobre Proxmox: añado una nube privada con Nextcloud, sincronización con Syncthing y un servidor multimedia con Jellyfin acelerado por GPU, sobre almacenamiento ZFS, todo autoalojado y sin abrir puertos."
 image:
-  path: /assets/img/posts/homelab-servicios/cover.webp
-  alt: Panel de Proxmox mostrando las VMs y contenedores del homelab
+  path: /assets/img/posts/covers/Homelab-servicios.webp
+  alt: "Homelab III · Servicios — Nextcloud, Syncthing, Jellyfin y ZFS"
 ---
 
 En los dos posts anteriores monté el [servidor Proxmox](/posts/Proxmox/) y publiqué el primer [servidor web con Cloudflare](/posts/ProxmoxWebServer/). Con la base funcionando, llegó la parte divertida: **dejar de depender de servicios en la nube de otros** y alojar los míos en casa. Esta entrega recoge los servicios que más uso en el día a día.

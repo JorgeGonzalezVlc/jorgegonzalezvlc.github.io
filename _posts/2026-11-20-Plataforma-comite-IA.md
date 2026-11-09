@@ -6,8 +6,8 @@ categories: [Desarrollo, Sistemas, IA & Automatización]
 tags: [Python, Django, IA, Anthropic, RGPD, Privacidad, Pseudonimización, Tailscale, Proxmox, Docker, Backups]
 description: "Plataforma interna para un comité de empresa: Django sobre una red aislada sin puertos públicos, con auditoría de accesos y una capa de IA que pseudonimiza los datos personales antes de enviarlos a un LLM y los revierte al volver. Privacidad por diseño."
 image:
-  path: /assets/img/posts/plataforma-comite/cover.webp
-  alt: Pantalla de acceso de la plataforma interna del comité de empresa
+  path: /assets/img/posts/covers/Plataforma-comite-IA.webp
+  alt: "Plataforma del comité — Django, red aislada e IA privada"
 ---
 
 De todos mis proyectos, este es el que más junta las tres cosas que hago: **desarrollo, sistemas y seguridad**, y además con un requisito que no admite atajos: **maneja datos personales de trabajadores**. Es una plataforma interna para la gestión de un comité de empresa, y la diseñé con una idea por delante de todo: **privacidad por diseño**.

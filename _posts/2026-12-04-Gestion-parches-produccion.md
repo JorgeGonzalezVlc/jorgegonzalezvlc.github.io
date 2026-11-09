@@ -6,8 +6,8 @@ categories: [Sistemas, Blue Team]
 tags: [Gestión de vulnerabilidades, Parches, Linux, PHP, Nginx, unattended-upgrades, Hardening, Blue Team]
 description: "El ciclo de vulnerabilidades aplicado a una infraestructura real: parches de seguridad automáticos con unattended-upgrades y una migración de PHP 8.1 a 8.4 en un servidor con varias webs en producción, sin tiempo de caída."
 image:
-  path: /assets/img/posts/gestion-parches/cover.webp
-  alt: Verificación de servicios activos tras la migración de PHP en producción
+  path: /assets/img/posts/covers/Gestion-parches-produccion.webp
+  alt: "Gestión de parches — Vulnerabilidades en producción"
 ---
 
 La parte menos vistosa de la seguridad defensiva, y una de las más importantes, es **mantener los sistemas al día**. En las ofertas aparece como "gestión de vulnerabilidades y parches", y no es teoría: lo hago de verdad en mi propio [servidor](/posts/ProxmoxWebServer/), que tiene **varias webs en producción**. Este post cuenta dos tareas reales: automatizar los parches de seguridad y migrar la versión de PHP sin tirar los servicios.

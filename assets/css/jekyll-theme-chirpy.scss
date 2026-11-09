@@ -1,148 +1,775 @@
 ---
-# Custom stylesheet — overrides the theme's default entry point.
-# Imports the Chirpy theme and then applies a modern, minimal restyle
-# (indigo accent · dark-first · flat rounded cards · modern type).
-# Everything below is plain CSS so it cannot break the Sass build.
+# Site stylesheet: imports the Chirpy theme (with its Bootstrap bundle in
+# production, exactly like the theme's own entry file) and then applies the
+# portfolio's design system on top. Everything after the import is plain CSS.
 ---
 
-@use "main";
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
 
-/* ============================================================
-   1. Accent color (indigo) — overrides Chirpy CSS variables
-   ============================================================ */
+/* =====================================================================
+   Design system — modern, minimal, indigo accent
+   ===================================================================== */
 
-/* Light mode */
-html:not([data-mode]),
-html[data-mode="light"] {
-  --link-color: #4f46e5;              /* indigo-600 */
-  --link-underline-color: #c7d2fe;    /* indigo-200 */
-  --sidebar-active-color: #4f46e5;
-  --nav-cursor-color: #4f46e5;
-  --tag-hover: #e0e7ff;               /* indigo-100 */
+/* ---------- 1. Colour tokens ---------------------------------------- */
+
+:root[data-bs-theme='dark'] {
+  --main-bg: #0a0c10;
+  --mask-bg: rgb(0 0 0 / 60%);
+  --main-border-color: #1b2029;
+
+  --text-color: #aab2bf;
+  --text-muted-color: #6f7887;
+  --text-muted-highlight-color: #9aa3b2;
+  --heading-color: #eceef3;
+  --label-color: #8d96a5;
+  --blockquote-border-color: #6366f1;
+  --blockquote-text-color: #8d96a5;
+  --link-color: #a5b4fc;
+  --link-underline-color: rgb(165 180 252 / 35%);
+  --button-bg: #10131a;
+  --btn-border-color: #1f2430;
+  --btn-backtotop-color: #c7d2fe;
+  --btn-backtotop-border-color: #1f2430;
+  --card-header-bg: #141821;
+  --img-bg: #0e1117;
+  --menu-bg: #10131a;
+  --menu-border-color: #1f2430;
+
+  --site-title-color: #eceef3;
+  --site-subtitle-color: #6f7887;
+  --sidebar-bg: #0a0c10;
+  --sidebar-border-color: #161a22;
+  --sidebar-muted-color: #858e9d;
+  --sidebar-active-color: #ffffff;
+  --sidebar-hover-bg: #12161e;
+  --sidebar-btn-bg: #12161e;
+  --sidebar-btn-color: #858e9d;
+  --avatar-border-color: transparent;
+
+  --topbar-bg: rgb(10 12 16 / 78%);
+  --topbar-text-color: #8d96a5;
+  --search-border-color: #1f2430;
+  --search-icon-color: #6f7887;
   --input-focus-border-color: #6366f1;
-  --btn-backtotop-color: #4f46e5;
+
+  --post-list-text-color: #aab2bf;
+  --btn-paginator-hover-color: #161a23;
+
+  --toc-highlight: #a5b4fc;
+  --toc-popup-border-color: #1f2430;
+  --tag-hover: rgb(99 102 241 / 16%);
+  --tag-border: #232836;
+  --tb-odd-bg: #10131a;
+  --tb-even-bg: #0c0f14;
+  --tb-border-color: #1b2029;
+  --card-bg: #10131a;
+  --card-hover-bg: transparent;
+  --card-shadow: none;
+
+  --categories-border: #1b2029;
+  --categories-hover-bg: #12161e;
+  --timeline-color: #1f2430;
+  --timeline-node-bg: #6366f1;
+
+  --highlight-bg-color: #0d1016;
+  --language-border-color: #1b2029;
+  --inline-code-bg: rgb(129 140 248 / 11%);
+  --code-header-muted-color: #2a2f3b;
+
+  /* custom */
+  --accent: #818cf8;
+  --accent-strong: #6366f1;
+  --accent-soft: rgb(99 102 241 / 14%);
+  --surface-2: #141821;
 }
 
-/* Dark mode (default) */
-html[data-mode="dark"] {
-  --link-color: #a5b4fc;              /* indigo-300, legible sobre fondo oscuro */
-  --link-underline-color: #4f46e5;
-  --sidebar-active-color: #a5b4fc;
-  --nav-cursor-color: #818cf8;        /* indigo-400 */
-  --tag-hover: #312e81;               /* indigo-900 */
-  --input-focus-border-color: #818cf8;
-  --btn-backtotop-color: #a5b4fc;
+:root[data-bs-theme='light'] {
+  --main-bg: #fafafb;
+  --main-border-color: #e6e8ee;
+
+  --text-color: #414754;
+  --text-muted-color: #7a8190;
+  --heading-color: #0f1117;
+  --blockquote-border-color: #6366f1;
+  --link-color: #4f46e5;
+  --link-underline-color: rgb(79 70 229 / 30%);
+  --button-bg: #ffffff;
+  --btn-border-color: #e6e8ee;
+  --btn-backtotop-color: #4f46e5;
+  --card-header-bg: #f3f4f7;
+  --img-bg: #f1f2f5;
+
+  --site-title-color: #0f1117;
+  --site-subtitle-color: #7a8190;
+  --sidebar-bg: #ffffff;
+  --sidebar-border-color: #eceef2;
+  --sidebar-muted-color: #626a79;
+  --sidebar-active-color: #0f1117;
+  --sidebar-hover-bg: #f3f4f7;
+  --avatar-border-color: transparent;
+
+  --topbar-bg: rgb(250 250 251 / 82%);
+  --search-border-color: #e6e8ee;
+  --input-focus-border-color: #6366f1;
+
+  --toc-highlight: #4f46e5;
+  --tag-hover: rgb(79 70 229 / 8%);
+  --card-bg: #ffffff;
+  --card-hover-bg: transparent;
+  --card-shadow: none;
+  --categories-hover-bg: #f3f4f7;
+  --timeline-node-bg: #6366f1;
+
+  --highlight-bg-color: #f6f7f9;
+  --inline-code-bg: rgb(79 70 229 / 7%);
+
+  /* custom */
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
+  --accent-soft: rgb(79 70 229 / 8%);
+  --surface-2: #f3f4f7;
 }
 
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
+  background: rgb(99 102 241 / 32%);
 }
 
-/* ============================================================
-   2. Typography — stack de sistema moderno + jerarquía
-   ============================================================ */
+/* ---------- 2. Typography ------------------------------------------- */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  letter-spacing: 0.1px;
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  font-size: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6,
-#site-title,
-.post-title,
-.card-title {
+/* One typeface everywhere (the theme mixes Lato and Source Sans).
+   Icons and code are excluded; icon pseudo-elements set their own font. */
+body,
+body :where(*:not(i, [class*='fa-'], .fa, code, code *, pre, pre *, kbd, samp, svg, svg *)) {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
+  color: var(--heading-color);
 }
 
-.post-content {
-  line-height: 1.75;
+code, pre, kbd, samp,
+.highlight,
+.code-header {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
 }
 
-/* Un poco más de aire en el contenido */
-.post-content > p {
-  margin-bottom: 1.1rem;
+/* ---------- 3. Sidebar ---------------------------------------------- */
+
+#sidebar {
+  border-right: 1px solid var(--sidebar-border-color);
 }
 
-/* ============================================================
-   3. Marca / sidebar — toque índigo y avatar cuidado
-   ============================================================ */
-
-#site-title a {
-  color: #818cf8; /* fallback si el navegador no soporta clip de texto */
-  background: linear-gradient(90deg, #818cf8, #6366f1);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+#sidebar .profile-wrapper {
+  margin-bottom: 1.5rem;
 }
 
-#avatar {
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.35);
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+#sidebar #avatar {
+  box-shadow: 0 0 0 2px var(--main-bg), 0 0 0 4px var(--accent-strong);
 }
 
-#avatar:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.6);
+#sidebar #avatar img:hover {
+  transform: scale(1.06);
 }
 
-/* Indicador de navegación activo */
-#sidebar .nav-link.active {
-  color: var(--sidebar-active-color) !important;
+#sidebar .site-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 1.4rem;
 }
 
-/* ============================================================
-   4. Tarjetas de post — planas, redondeadas, con hover sutil
-   ============================================================ */
-
-.card {
-  border-radius: 14px !important;
-  border: 1px solid var(--card-border-color, rgba(128, 128, 128, 0.16));
-  box-shadow: none !important;
-  transition: transform 0.18s ease, box-shadow 0.18s ease,
-    border-color 0.18s ease;
+#sidebar .site-subtitle {
+  font-style: normal !important;
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18) !important;
-  border-color: var(--link-color);
+#sidebar .nav {
+  padding: 0 1rem;
 }
 
-/* Imágenes de portada dentro de las tarjetas, sin esquinas duras */
-.card .preview-img img {
-  border-radius: 14px 14px 0 0;
+#sidebar .nav-item {
+  margin: 0.1rem 0;
 }
 
-/* ============================================================
-   5. Etiquetas, botones y detalles
-   ============================================================ */
+#sidebar .nav-link {
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
 
-.post-tag {
+#sidebar .nav-item.active .nav-link {
+  background: var(--accent-soft);
+  color: var(--sidebar-active-color);
+}
+
+#sidebar .nav-item.active .nav-link i {
+  color: var(--accent);
+}
+
+/* the sliding "cursor" bar of the theme is replaced by the active pill */
+#sidebar ul > li:last-child::after {
+  display: none;
+}
+
+#sidebar .sidebar-bottom a,
+#sidebar .sidebar-bottom .btn {
+  border-radius: 10px;
+}
+
+/* ---------- 4. Top bar ---------------------------------------------- */
+
+#topbar-wrapper {
+  border-bottom: 1px solid var(--main-border-color);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+#breadcrumb {
+  font-size: 0.85rem;
+}
+
+#search {
+  border-radius: 10px;
+}
+
+/* ---------- 5. Layout ----------------------------------------------- */
+
+/* Home: no side panel; the content uses the full width of the column */
+body:has(#post-list.post-grid) #panel-wrapper {
+  display: none !important;
+}
+
+body:has(#post-list.post-grid) main,
+body:has(#post-list.post-grid) #tail-wrapper {
+  flex: 0 0 100% !important;
+  max-width: 1120px !important;
+  width: 100% !important;
+  margin-inline: auto;
+}
+
+/* ---------- 6. Home: intro ------------------------------------------ */
+
+#intro {
+  padding: 3.5rem 0 1rem;
+  max-width: 760px;
+}
+
+.intro-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.9rem;
+}
+
+.intro-title {
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin: 0 0 1.25rem;
+}
+
+.intro-lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  margin-bottom: 1.75rem;
+}
+
+.intro-areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+}
+
+.intro-areas a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--main-border-color);
   border-radius: 999px;
-  transition: all 0.15s ease;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-color);
+  background: var(--card-bg);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
-.post-tag:hover {
-  background: var(--tag-hover) !important;
-  color: var(--link-color) !important;
+.intro-areas a i {
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.intro-areas a:hover {
+  text-decoration: none;
+  border-color: var(--accent);
+  color: var(--heading-color);
+  background: var(--accent-soft);
+}
+
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.btn-primary-solid,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.15s, background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-primary-solid {
+  background: var(--accent-strong);
+  color: #fff !important;
+  border: 1px solid var(--accent-strong);
+}
+
+.btn-primary-solid:hover {
+  text-decoration: none;
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  border: 1px solid var(--main-border-color);
+  color: var(--heading-color) !important;
+}
+
+.btn-ghost:hover {
+  text-decoration: none;
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.intro-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin: 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--main-border-color);
+}
+
+.intro-stats dt {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--heading-color);
+  line-height: 1.1;
+}
+
+.intro-stats dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted-color);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3.5rem 0 0;
+  font-size: 0.78rem !important;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted-color);
+}
+
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--main-border-color);
+}
+
+/* ---------- 7. Home: post grid -------------------------------------- */
+
+#post-list.post-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  #post-list.post-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem;
+  }
+}
+
+#post-list.post-grid .card-wrapper {
+  margin: 0 !important;
+}
+
+#post-list.post-grid .post-card {
+  height: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--main-border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#post-list.post-grid .post-card:hover {
+  border-color: rgb(129 140 248 / 55%);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -20px rgb(0 0 0 / 55%);
+}
+
+#post-list.post-grid .post-preview {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  color: inherit;
+}
+
+#post-list.post-grid .post-preview::before {
+  display: none;
+}
+
+#post-list.post-grid .post-preview:hover {
   text-decoration: none;
 }
 
-/* Enlaces del contenido con subrayado más fino */
-.post-content a {
+.post-cover {
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  background: var(--img-bg);
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+.post-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9) brightness(0.92);
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.post-card:hover .post-cover img {
+  transform: scale(1.03);
+  filter: none;
+}
+
+#post-list.post-grid .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.3rem 1.4rem 1.35rem !important;
+}
+
+.post-cat {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.meta-sep {
+  opacity: 0.6;
+}
+
+.post-pin {
+  margin-left: auto;
+  color: var(--text-muted-color);
+}
+
+#post-list.post-grid .post-card .card-body .card-title {
+  font-size: 1.12rem !important;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.6rem !important;
+  color: var(--heading-color) !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
+
+#post-list.post-grid .post-card .card-body .card-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted-color);
+  margin: 0 0 1.1rem;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#post-list.post-grid .post-card .card-body .post-meta {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted-color) !important;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 2.5rem !important;
+}
+
+.pagination .page-item .page-link {
+  border-radius: 10px;
+  min-width: 2.2rem;
+  text-align: center;
+}
+
+.pagination .page-item.active .page-link {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ---------- 8. Post page -------------------------------------------- */
+
+/* Side panel: keep only the table of contents (no "recently updated" / "trending tags") */
+#panel-wrapper .access {
+  display: none !important;
+}
+
+/* The cover is a designed card with the title on it; inside the post it would repeat
+   the heading, so it is only used on the home grid and for social sharing. */
+article[data-toc] > header .post-meta > div.mt-3.mb-3 {
+  display: none;
+}
+
+article[data-toc] > header h1 {
+  font-size: clamp(1.85rem, 3.2vw, 2.45rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-top: 2.5rem;
+}
+
+.post-desc {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--text-muted-color) !important;
+  font-weight: 400 !important;
+}
+
+article[data-toc] > header .post-meta {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+article[data-toc] > header .preview-img {
+  border-radius: 16px;
+  border: 1px solid var(--main-border-color);
+}
+
+.content {
+  font-size: 1.04rem;
+  line-height: 1.8;
+}
+
+.content p {
+  margin-bottom: 1.15rem;
+}
+
+.content h2 {
+  font-size: 1.55rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.content h3 {
+  font-size: 1.2rem;
+  margin-top: 2.2rem;
+}
+
+.content a:not(.img-link):not(.popup) {
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline-color);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
+  border-bottom: 0;
 }
 
-/* Botón "volver arriba" coherente con el acento */
-#back-to-top {
+.content a:not(.img-link):not(.popup):hover {
+  text-decoration-color: var(--link-color);
+}
+
+.content hr {
+  border: 0;
+  height: 1px;
+  background: var(--main-border-color);
+  opacity: 1;
+  margin: 2.75rem 0;
+}
+
+/* images & captions */
+.content img {
+  border-radius: 12px;
+  border: 1px solid var(--main-border-color);
+}
+
+.content img + em,
+.content .img-link + em,
+.content a.popup + em {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-style: normal;
+  color: var(--text-muted-color);
+  text-align: center;
+}
+
+/* code */
+.content code.highlighter-rouge {
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  font-size: 0.86em;
+}
+
+div[class^='language-'],
+.highlighter-rouge > .highlight {
+  border-radius: 12px !important;
+  border: 1px solid var(--main-border-color);
+  overflow: hidden;
+}
+
+.code-header {
+  border-bottom: 1px solid var(--main-border-color);
+}
+
+/* tables */
+.content .table-wrapper > table {
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.92rem;
+}
+
+/* blockquotes & prompts */
+.content blockquote:not([class^='prompt-']) {
+  border-left: 3px solid var(--accent-strong);
+  border-radius: 0 10px 10px 0;
+  padding: 0.6rem 1rem;
+}
+
+.content blockquote[class^='prompt-'] {
+  border-radius: 12px;
+}
+
+/* tags under the post */
+.post-tag {
+  border-radius: 999px !important;
+  border: 1px solid var(--main-border-color) !important;
+  padding: 0.25rem 0.75rem !important;
+  font-size: 0.8rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.post-tag:hover {
+  background: var(--accent-soft) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
+/* table of contents */
+#toc-wrapper {
+  font-size: 0.85rem;
+}
+
+/* related posts at the bottom of a post */
+#related-posts .card {
+  border: 1px solid var(--main-border-color);
   border-radius: 14px;
+  box-shadow: none;
+  background: var(--card-bg);
 }
 
-/* Barra de progreso de lectura en índigo */
-#toc-wrapper .toc .toc-link::before,
-.post-content .table-wrapper > table tbody tr:hover {
-  border-color: var(--link-color);
+#related-posts .card:hover {
+  border-color: rgb(129 140 248 / 55%);
+}
+
+/* ---------- 9. Other pages ------------------------------------------ */
+
+.card.categories {
+  border: 1px solid var(--main-border-color);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+#archives .year {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* back to top */
+#back-to-top {
+  border-radius: 12px;
+  border: 1px solid var(--main-border-color);
+  background: var(--card-bg);
+}
+
+/* footer */
+footer {
+  border-top: 1px solid var(--main-border-color);
+  padding-top: 1.5rem;
+  font-size: 0.82rem;
+}
+
+/* ---------- 10. Small screens --------------------------------------- */
+
+@media (max-width: 767.98px) {
+  #intro {
+    padding: 2rem 1rem 0.5rem;
+  }
+
+  .section-heading,
+  #post-list.post-grid {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .intro-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .intro-stats dt {
+    font-size: 1.3rem;
+  }
+
+  .intro-stats dd {
+    font-size: 0.75rem;
+  }
 }

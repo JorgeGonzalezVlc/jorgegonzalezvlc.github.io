@@ -5,11 +5,8 @@ date: 2026-01-31
 categories: [IA & Automatización]
 tags: [IA, Docker, Python, AI Agents, n8n]
 image:
-  path: /assets/img/n8n.png
-  alt: n8n OpenAI
-  width: 500
-  height: 280
-  class: sz-contain
+  path: /assets/img/posts/covers/n8n-Automatizacion-correo.webp
+  alt: "Correo inteligente con n8n — Automatización con agentes de IA"
 ---
 
 

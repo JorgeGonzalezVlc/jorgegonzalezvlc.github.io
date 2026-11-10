@@ -111,5 +111,5 @@ _El dominio pasa a ser un alias del túnel (identificador oculto)_
 ## Lo que aprendí
 
 - **Los pagos no se confirman en el frontend.** El navegador puede mentir; el webhook firmado no.
-- **Producción es otra cosa.** Copias de la base de datos, servicios que se recuperan solos y, más adelante, el [endurecimiento con systemd](/posts/API-eventos-FastAPI-hardening/) y la gestión de parches de este mismo servidor.
+- **Producción es otra cosa.** Copias de la base de datos, servicios que se recuperan solos y, más adelante, el [endurecimiento con systemd](/posts/API-eventos-FastAPI-hardening/) y la [gestión de parches](/posts/Gestion-parches-produccion/) de este mismo servidor.
 - **Construir para un dominio que conoces** (en mi caso, la enseñanza musical) hace que las decisiones de producto salgan solas: sabía qué necesita un alumno de violonchelo antes de escribir una línea de código.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "HTB TwoMillion: de una API escondida en el JavaScript a root por un CVE del kernel"
-date: 2026-12-18 10:00:00 +0200
+date: 2026-09-25 10:00:00 +0200
 categories: [Red Team, HackTheBox]
 tags: [HTB, Web Exploitation, API, Escalada de privilegios, Linux, OWASP, Red Team]
 description: "Writeup de la máquina retirada TwoMillion de HackTheBox: descubrir una API oculta en el JavaScript del cliente, encadenar fallos de control de acceso hasta ejecutar comandos y escalar a root mediante un CVE del kernel."

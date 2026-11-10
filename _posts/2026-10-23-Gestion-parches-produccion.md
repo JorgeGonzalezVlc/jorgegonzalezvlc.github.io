@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gestión de vulnerabilidades en mi servidor: de parches automáticos a migrar PHP en producción"
-date: 2026-12-04 10:00:00 +0200
+date: 2026-10-23 10:00:00 +0200
 categories: [Sistemas, Blue Team]
 tags: [Gestión de vulnerabilidades, Parches, Linux, PHP, Nginx, unattended-upgrades, Hardening, Blue Team]
 description: "El ciclo de vulnerabilidades aplicado a una infraestructura real: parches de seguridad automáticos con unattended-upgrades y una migración de PHP 8.1 a 8.4 en un servidor con varias webs en producción, sin tiempo de caída."

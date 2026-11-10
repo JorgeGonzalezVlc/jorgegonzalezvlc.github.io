@@ -2,7 +2,7 @@
 layout: post
 title: "Lector de Actas con IA: Verificando la fidelidad de documentos oficiales"
 date: 2026-04-20
-categories: [IA & Automatización]
+categories: [Desarrollo e IA]
 tags: [IA, Python, LLM, AI Agents, NLP]
 image:
   path: /assets/img/posts/covers/Comparador-Actas.webp

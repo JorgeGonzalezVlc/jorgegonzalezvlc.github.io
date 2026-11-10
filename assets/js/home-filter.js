@@ -46,6 +46,7 @@
     if (label) label.textContent = isAll ? defaultLabel : 'Proyectos · ' + button.textContent.trim();
     if (count) count.textContent = isAll ? '' : String(shown);
     if (empty) empty.hidden = shown !== 0;
+    if (heading) heading.className = 'section-heading' + (isAll ? '' : ' area-' + button.dataset.filter);
 
     if (scroll && heading) {
       heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -63,8 +64,12 @@
     });
   });
 
+  /* old links keep working after merging "Desarrollo" and "IA & Automatización" */
+  var ALIASES = { 'desarrollo-ia': 'desarrollo-e-ia' };
+
   function fromHash(scroll) {
     var name = (location.hash || '').replace('#', '');
+    name = ALIASES[name] || name;
     var known = buttons.some(function (b) { return b.dataset.filter === name; });
     if (known || name === '') apply(known ? name : 'todos', scroll && known);
   }

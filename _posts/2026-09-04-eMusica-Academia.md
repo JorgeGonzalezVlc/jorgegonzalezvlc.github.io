@@ -2,7 +2,7 @@
 layout: post
 title: "e-Música Academia: plataforma de cursos por suscripción con Flask, Stripe y Cloudflare Tunnel"
 date: 2026-09-04 10:00:00 +0200
-categories: [Desarrollo, Python]
+categories: [Desarrollo e IA, Python]
 tags: [Python, Flask, SQLAlchemy, Stripe, Webhooks, Nginx, Gunicorn, Cloudflare, Proxmox, Linux]
 description: "Plataforma web de formación musical en producción: área de alumnos, panel de administración, progreso, suscripciones recurrentes con Stripe vía webhooks, vídeo por CDN y despliegue en mi propio servidor sin abrir puertos."
 image:

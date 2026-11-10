@@ -2,7 +2,7 @@
 layout: post
 title: "Una API de eventos con FastAPI, e IA que no tumba el login: diseño y hardening con systemd"
 date: 2026-10-16 10:00:00 +0200
-categories: [Desarrollo, Sistemas]
+categories: [Desarrollo e IA, Sistemas]
 tags: [Python, FastAPI, API REST, systemd, Hardening, Linux, IA, Anthropic, bcrypt, Blue Team]
 description: "Backend en FastAPI para un evento real: RSVP, galería con moderación, panel y minijuegos, con autenticación por hash, puntuación calculada en servidor e IA tolerante a fallos. Y cómo lo endurecí con las opciones de seguridad de systemd hasta bajar el nivel de exposición."
 image:

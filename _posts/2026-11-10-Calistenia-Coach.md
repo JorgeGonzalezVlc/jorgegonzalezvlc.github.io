@@ -2,7 +2,7 @@
 layout: post
 title: "Calistenia Coach: un entrenador personal con IA que programa, valida y aprende de cada sesión"
 date: 2026-11-10 00:00:00 +0100
-categories: [IA & Automatización, Desarrollo]
+categories: [Desarrollo e IA]
 tags: [Python, FastAPI, React, TypeScript, IA, LLM, Claude, PostgreSQL, Docker, PWA]
 description: "Una app (PWA) que planifica mesociclos y sesiones de calistenia con un LLM, valida en código cada propuesta del modelo, mide el progreso por escaleras de skills y mantiene una «ficha del atleta» como memoria a largo plazo. FastAPI, React, PostgreSQL y Docker."
 image:

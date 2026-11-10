@@ -2,7 +2,7 @@
 layout: post
 title: "ProcessControl: una aplicación a medida para un centro de formación (Flask + PDFs oficiales)"
 date: 2026-08-21 10:00:00 +0200
-categories: [Desarrollo, Python]
+categories: [Desarrollo e IA, Python]
 tags: [Python, Flask, SQLAlchemy, PyMuPDF, Freelance, Automatización, SQLite]
 description: "Proyecto freelance: aplicación web en Flask que gestiona cursos, alumnos, ausencias y prácticas de un centro de formación y genera automáticamente la documentación oficial en PDF rellenando las plantillas de la administración."
 image:

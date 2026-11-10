@@ -18,9 +18,9 @@
 /* ---------- 1. Colour tokens ---------------------------------------- */
 
 :root[data-bs-theme='dark'] {
-  --main-bg: #0a0c10;
+  --main-bg: #0b1020;
   --mask-bg: rgb(0 0 0 / 60%);
-  --main-border-color: #1b2029;
+  --main-border-color: #1c2541;
 
   --text-color: #aab2bf;
   --text-muted-color: #6f7887;
@@ -31,61 +31,61 @@
   --blockquote-text-color: #8d96a5;
   --link-color: #a5b4fc;
   --link-underline-color: rgb(165 180 252 / 35%);
-  --button-bg: #10131a;
-  --btn-border-color: #1f2430;
+  --button-bg: #10172b;
+  --btn-border-color: #212a47;
   --btn-backtotop-color: #c7d2fe;
-  --btn-backtotop-border-color: #1f2430;
-  --card-header-bg: #141821;
-  --img-bg: #0e1117;
-  --menu-bg: #10131a;
-  --menu-border-color: #1f2430;
+  --btn-backtotop-border-color: #212a47;
+  --card-header-bg: #151d35;
+  --img-bg: #0e152a;
+  --menu-bg: #10172b;
+  --menu-border-color: #212a47;
 
   --site-title-color: #eceef3;
   --site-subtitle-color: #6f7887;
-  --sidebar-bg: #0a0c10;
-  --sidebar-border-color: #161a22;
+  --sidebar-bg: #0b1020;
+  --sidebar-border-color: #172038;
   --sidebar-muted-color: #858e9d;
   --sidebar-active-color: #ffffff;
-  --sidebar-hover-bg: #12161e;
-  --sidebar-btn-bg: #12161e;
+  --sidebar-hover-bg: #131b31;
+  --sidebar-btn-bg: #131b31;
   --sidebar-btn-color: #858e9d;
   --avatar-border-color: transparent;
 
-  --topbar-bg: rgb(10 12 16 / 78%);
+  --topbar-bg: rgb(11 16 32 / 78%);
   --topbar-text-color: #8d96a5;
-  --search-border-color: #1f2430;
+  --search-border-color: #212a47;
   --search-icon-color: #6f7887;
   --input-focus-border-color: #6366f1;
 
   --post-list-text-color: #aab2bf;
-  --btn-paginator-hover-color: #161a23;
+  --btn-paginator-hover-color: #18213b;
 
   --toc-highlight: #a5b4fc;
-  --toc-popup-border-color: #1f2430;
+  --toc-popup-border-color: #212a47;
   --tag-hover: rgb(99 102 241 / 16%);
-  --tag-border: #232836;
-  --tb-odd-bg: #10131a;
-  --tb-even-bg: #0c0f14;
-  --tb-border-color: #1b2029;
-  --card-bg: #10131a;
+  --tag-border: #263052;
+  --tb-odd-bg: #10172b;
+  --tb-even-bg: #0d1326;
+  --tb-border-color: #1c2541;
+  --card-bg: #10172b;
   --card-hover-bg: transparent;
   --card-shadow: none;
 
-  --categories-border: #1b2029;
-  --categories-hover-bg: #12161e;
-  --timeline-color: #1f2430;
+  --categories-border: #1c2541;
+  --categories-hover-bg: #131b31;
+  --timeline-color: #212a47;
   --timeline-node-bg: #6366f1;
 
-  --highlight-bg-color: #0d1016;
-  --language-border-color: #1b2029;
+  --highlight-bg-color: #0d1427;
+  --language-border-color: #1c2541;
   --inline-code-bg: rgb(129 140 248 / 11%);
-  --code-header-muted-color: #2a2f3b;
+  --code-header-muted-color: #2c3654;
 
   /* custom */
   --accent: #818cf8;
   --accent-strong: #6366f1;
   --accent-soft: rgb(99 102 241 / 14%);
-  --surface-2: #141821;
+  --surface-2: #151d35;
 }
 
 :root[data-bs-theme='light'] {
@@ -137,6 +137,47 @@
 
 ::selection {
   background: rgb(99 102 241 / 32%);
+}
+
+/* ---------- 1b. Area colours ----------------------------------------
+   One colour per area. Used only for accents (icons, badges, thin lines,
+   borders, hover), never as large backgrounds.
+   --area       the brand colour of the area
+   --area-text  a version that is legible as text on the current theme
+   --area-soft  very light tint for badge / hover backgrounds
+   --area-line  semi-transparent version for borders and decorative lines
+   ------------------------------------------------------------------- */
+
+.area-blue-team { --area: #2563eb; }
+.area-red-team { --area: #dc2626; }
+.area-grc { --area: #a855f7; }
+.area-sistemas { --area: #0d9488; }
+.area-desarrollo-e-ia { --area: #d97706; }
+
+.area-blue-team,
+.area-red-team,
+.area-grc,
+.area-sistemas,
+.area-desarrollo-e-ia {
+  --area-text: color-mix(in srgb, var(--area) 60%, #fff);
+  --area-soft: color-mix(in srgb, var(--area) 14%, transparent);
+  --area-line: color-mix(in srgb, var(--area) 50%, transparent);
+}
+
+:root[data-bs-theme='light'] :is(.area-blue-team, .area-red-team, .area-grc, .area-sistemas, .area-desarrollo-e-ia) {
+  --area-text: color-mix(in srgb, var(--area) 80%, #000);
+  --area-soft: color-mix(in srgb, var(--area) 9%, transparent);
+  --area-line: color-mix(in srgb, var(--area) 40%, transparent);
+}
+
+.area-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--area, var(--accent));
+  margin-right: 0.45rem;
+  flex-shrink: 0;
 }
 
 /* ---------- 2. Typography ------------------------------------------- */
@@ -316,22 +357,23 @@ body:has(#post-list.post-grid) #tail-wrapper {
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
+/* each area chip uses its own colour; "Todos" falls back to the indigo accent */
 .intro-areas a i {
-  color: var(--accent);
+  color: var(--area-text, var(--accent));
   font-size: 0.8rem;
 }
 
 .intro-areas a:hover {
   text-decoration: none;
-  border-color: var(--accent);
+  border-color: var(--area-line, var(--accent));
   color: var(--heading-color);
-  background: var(--accent-soft);
+  background: var(--area-soft, var(--accent-soft));
 }
 
 /* active area filter */
 .intro-areas a.is-active {
-  border-color: var(--accent-strong);
-  background: var(--accent-strong);
+  border-color: var(--area, var(--accent-strong));
+  background: var(--area, var(--accent-strong));
   color: #fff;
 }
 
@@ -347,10 +389,15 @@ body:has(#post-list.post-grid) #tail-wrapper {
   height: 1.4rem;
   padding: 0 0.45rem;
   border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--area-soft, var(--accent-soft));
+  color: var(--area-text, var(--accent));
   font-size: 0.72rem;
   letter-spacing: 0;
+}
+
+/* the line next to the section title takes the colour of the active area */
+.section-heading[class*='area-']::after {
+  background: var(--area-line);
 }
 
 .filter-empty {
@@ -488,7 +535,7 @@ body:has(#post-list.post-grid) #tail-wrapper {
 }
 
 #post-list.post-grid .post-card:hover {
-  border-color: rgb(129 140 248 / 55%);
+  border-color: var(--area-line, rgb(129 140 248 / 55%));
   transform: translateY(-3px);
   box-shadow: 0 18px 40px -20px rgb(0 0 0 / 55%);
 }
@@ -515,7 +562,8 @@ body:has(#post-list.post-grid) #tail-wrapper {
   aspect-ratio: 1200 / 630;
   overflow: hidden;
   background: var(--img-bg);
-  border-bottom: 1px solid var(--main-border-color);
+  /* thin decorative line in the area colour between cover and text */
+  border-bottom: 2px solid var(--area-line, var(--main-border-color));
 }
 
 .post-cover img {
@@ -539,8 +587,10 @@ body:has(#post-list.post-grid) #tail-wrapper {
 }
 
 .post-cat {
-  color: var(--accent);
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  color: var(--area-text, var(--accent));
+  font-weight: 600;
 }
 
 .meta-sep {
@@ -615,12 +665,38 @@ article[data-toc] > header .post-meta > div.mt-3.mb-3 {
   display: none;
 }
 
+/* area badge above the post title */
+.post-area {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--area-line, var(--main-border-color));
+  border-radius: 999px;
+  background: var(--area-soft, transparent);
+  color: var(--area-text, var(--accent)) !important;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.post-area:hover {
+  text-decoration: none;
+  border-color: var(--area, var(--accent));
+}
+
 article[data-toc] > header h1 {
   font-size: clamp(1.85rem, 3.2vw, 2.45rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin-top: 2.5rem;
+}
+
+article[data-toc] > header .post-area + h1 {
+  margin-top: 1rem;
 }
 
 .post-desc {

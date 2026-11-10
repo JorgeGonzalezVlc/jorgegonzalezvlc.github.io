@@ -2,7 +2,7 @@
 layout: post
 title: "Automatización inteligente de correos con n8n y OpenAI"
 date: 2026-01-31
-categories: [IA & Automatización]
+categories: [Desarrollo e IA]
 tags: [IA, Docker, Python, AI Agents, n8n]
 image:
   path: /assets/img/posts/covers/n8n-Automatizacion-correo.webp

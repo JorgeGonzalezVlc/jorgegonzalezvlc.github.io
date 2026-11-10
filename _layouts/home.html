@@ -61,22 +61,22 @@ layout: default
     {%- comment -%}
       Area filters. Each one filters the project grid below (assets/js/home-filter.js);
       without JavaScript they still work as plain links to the category page.
-      data-cats lists the category slugs that belong to the area.
+      data-cats lists the category slugs that belong to the area; the area-* class gives each
+      area its colour (see assets/css/jekyll-theme-chirpy.scss, "Area colours").
     {%- endcomment -%}
     {% assign slug_blue = 'Blue Team' | slugify %}
     {% assign slug_sis = 'Sistemas' | slugify %}
-    {% assign slug_dev = 'Desarrollo' | slugify %}
-    {% assign slug_ia = 'IA & Automatización' | slugify %}
+    {% assign slug_dev = 'Desarrollo e IA' | slugify %}
     {% assign slug_grc = 'GRC' | slugify %}
     {% assign slug_red = 'Red Team' | slugify %}
 
     <ul class="intro-areas" id="area-filters" aria-label="Filtrar proyectos por área">
       <li><a href="#proyectos" data-filter="todos" data-cats="" aria-pressed="true"><i class="fas fa-layer-group"></i>Todos</a></li>
-      <li><a href="{{ '/categories/' | append: slug_blue | append: '/' | relative_url }}" data-filter="blue-team" data-cats="{{ slug_blue }}" aria-pressed="false"><i class="fas fa-shield-halved"></i>Blue Team y SOC</a></li>
-      <li><a href="{{ '/categories/' | append: slug_sis | append: '/' | relative_url }}" data-filter="sistemas" data-cats="{{ slug_sis }}" aria-pressed="false"><i class="fas fa-server"></i>Sistemas</a></li>
-      <li><a href="{{ '/categories/' | append: slug_dev | append: '/' | relative_url }}" data-filter="desarrollo-ia" data-cats="{{ slug_dev }} {{ slug_ia }}" aria-pressed="false"><i class="fas fa-code"></i>Desarrollo e IA</a></li>
-      <li><a href="{{ '/categories/' | append: slug_grc | append: '/' | relative_url }}" data-filter="grc" data-cats="{{ slug_grc }}" aria-pressed="false"><i class="fas fa-scale-balanced"></i>GRC</a></li>
-      <li><a href="{{ '/categories/' | append: slug_red | append: '/' | relative_url }}" data-filter="red-team" data-cats="{{ slug_red }}" aria-pressed="false"><i class="fas fa-user-secret"></i>Red Team</a></li>
+      <li><a class="area-{{ slug_blue }}" href="{{ '/categories/' | append: slug_blue | append: '/' | relative_url }}" data-filter="{{ slug_blue }}" data-cats="{{ slug_blue }}" aria-pressed="false"><i class="fas fa-shield-halved"></i>Blue Team y SOC</a></li>
+      <li><a class="area-{{ slug_red }}" href="{{ '/categories/' | append: slug_red | append: '/' | relative_url }}" data-filter="{{ slug_red }}" data-cats="{{ slug_red }}" aria-pressed="false"><i class="fas fa-user-secret"></i>Red Team</a></li>
+      <li><a class="area-{{ slug_sis }}" href="{{ '/categories/' | append: slug_sis | append: '/' | relative_url }}" data-filter="{{ slug_sis }}" data-cats="{{ slug_sis }}" aria-pressed="false"><i class="fas fa-server"></i>Sistemas</a></li>
+      <li><a class="area-{{ slug_dev }}" href="{{ '/categories/' | append: slug_dev | append: '/' | relative_url }}" data-filter="{{ slug_dev }}" data-cats="{{ slug_dev }}" aria-pressed="false"><i class="fas fa-code"></i>Desarrollo e IA</a></li>
+      <li><a class="area-{{ slug_grc }}" href="{{ '/categories/' | append: slug_grc | append: '/' | relative_url }}" data-filter="{{ slug_grc }}" data-cats="{{ slug_grc }}" aria-pressed="false"><i class="fas fa-scale-balanced"></i>GRC</a></li>
     </ul>
 
     <div class="intro-actions">
@@ -105,7 +105,8 @@ layout: default
       several areas (e.g. an AD attack lab categorised Blue Team and tagged Red Team).
     {%- endcomment -%}
     {%- capture post_cats -%}{% for c in post.categories %}{{ c | slugify }} {% endfor %}{% for t in post.tags %}{{ t | slugify }} {% endfor %}{%- endcapture -%}
-    <article class="card-wrapper card post-card" data-cats="{{ post_cats | strip }}">
+    {% assign main_area = post.categories | first | slugify %}
+    <article class="card-wrapper card post-card area-{{ main_area }}" data-cats="{{ post_cats | strip }}">
       <a href="{{ post.url | relative_url }}" class="post-preview">
         {% if post.image %}
           {% assign src = post.image.path | default: post.image %}
@@ -126,11 +127,11 @@ layout: default
           <p class="card-text">{% include post-summary.html %}</p>
 
           <div class="post-meta">
-            {% include datetime.html date=post.date lang=lang %}
             {% if post.categories.size > 0 %}
+              <span class="post-cat"><span class="area-dot" aria-hidden="true"></span>{{ post.categories | first }}</span>
               <span class="meta-sep" aria-hidden="true">·</span>
-              <span class="post-cat">{{ post.categories | first }}</span>
             {% endif %}
+            {% include datetime.html date=post.date lang=lang %}
             {% if post.pin %}
               <span class="post-pin" title="Destacado"><i class="fas fa-thumbtack"></i></span>
             {% endif %}

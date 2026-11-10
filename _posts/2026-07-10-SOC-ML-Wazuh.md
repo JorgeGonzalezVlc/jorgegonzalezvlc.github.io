@@ -2,7 +2,7 @@
 layout: post
 title: "SOC-ML: aplicando Machine Learning a logs reales de Wazuh"
 date: 2026-07-10
-categories: [IA & Automatización, Blue Team]
+categories: [Desarrollo e IA, Blue Team]
 tags: [ML, Wazuh, Python, Isolation Forest, Random Forest, KMeans, Blue Team, SIEM]
 image:
   path: /assets/img/posts/covers/SOC-ML-Wazuh.webp

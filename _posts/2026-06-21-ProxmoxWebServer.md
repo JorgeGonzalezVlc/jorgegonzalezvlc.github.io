@@ -4,6 +4,7 @@ title: "Servidor web en casa: Nginx, Flask y Cloudflare Zero Trust"
 date: 2026-06-21
 categories: [Sistemas]
 tags: [Proxmox, Homelab, Linux, Python, Docker]
+description: "Segunda entrega del homelab: una VM de Ubuntu Server en Proxmox con Nginx y aplicaciones Flask para la web de una asociación cultural, publicada con Cloudflare Zero Trust sin abrir puertos en el router."
 image:
   path: /assets/img/posts/covers/ProxmoxWebServer.webp
   alt: "Homelab II · Servidor web — Nginx, Flask y Cloudflare Zero Trust"
@@ -13,9 +14,9 @@ image:
 
 Hace un tiempo desarrollé una web para una asociación cultural, algo sencillo: HTML, CSS, JavaScript y algo de PHP para el formulario de contacto. Con el tiempo surgió la necesidad de ampliarla con dos aplicaciones en Python: una para crear la academia y otra para la gestión interna.
 
-Cual fue mi sorpresa al intentar desplegarlas, resulta que mi hosting compartido no soportaba Python y la solución que me ofrecía mi proveedor era pasarme a un VPS por 18€/mes.
+Cuál fue mi sorpresa al intentar desplegarlas, resulta que mi hosting compartido no soportaba Python y la solución que me ofrecía mi proveedor era pasarme a un VPS por 18€/mes.
 
-Teniendo ya el mini PC con Proxmox, la respuesta era obvia. Lenvantarlo en mi propio PC.
+Teniendo ya el mini PC con Proxmox, la respuesta era obvia: levantarlo en mi propio servidor.
 
 ## VM y no contenedor LXC
 
@@ -30,7 +31,7 @@ Desde el panel de Proxmox (`https://192.168.1.253:8006`) click en **Create VM** 
 
 - **OS**: Ubuntu Server 22.04 LTS (tenemos que tener la ISO subida previamente a `local → ISO Images`)
 - **Disks**: 50GB en `local-zfs`, Discard activado, IO thread activado
-- **CPU**: 1 core, tipo `host` (va un poco justo, pero siempre podre ampliar en un futuro)
+- **CPU**: 1 core, tipo `host` (va un poco justo, pero siempre podré ampliar en un futuro)
 - **Memory**: 2Gb
 - **Network**: `vmbr0`, modelo VirtIO
 
@@ -49,7 +50,7 @@ Me resulta mas sencillo de esta manera. No tengo por qué volver a la consola de
 Una vez instalado:
 
 ```bash
-ssh jorge@192.168.1.10
+ssh usuario@192.168.1.10
 sudo apt update && sudo apt upgrade -y
 ```
 
@@ -100,13 +101,13 @@ Subo los archivos ya preparados desde mi PC usando powershell con `scp`:
 
 ```powershell
 # Desde PowerShell en Windows
-scp -r "C:\Users\jorge\Desktop\web\css" jorge@192.168.1.10:/var/www/xxxx.es/
-scp -r "C:\Users\jorge\Desktop\web\img" jorge@192.168.1.10:/var/www/xxxx.es/
-scp -r "C:\Users\jorge\Desktop\web\js" jorge@192.168.1.10:/var/www/xxxx.es/
-scp "C:\Users\jorge\Desktop\web\index.html" jorge@192.168.1.10:/var/www/xxxxx.es/
-scp "C:\Users\jorge\Desktop\web\enviar.php" jorge@192.168.1.10:/var/www/xxxxx.es/
-scp -r "C:\Users\jorge\Desktop\web\emusica_academia" jorge@192.168.1.10:/var/www/xxxxx.xxxxx.es/
-scp -r "C:\Users\jorge\Desktop\web\emusica_gestion" jorge@192.168.1.10:/var/www/xxxxx.xxxxx.es/
+scp -r "C:\proyectos\web\css" usuario@192.168.1.10:/var/www/xxxx.es/
+scp -r "C:\proyectos\web\img" usuario@192.168.1.10:/var/www/xxxx.es/
+scp -r "C:\proyectos\web\js" usuario@192.168.1.10:/var/www/xxxx.es/
+scp "C:\proyectos\web\index.html" usuario@192.168.1.10:/var/www/xxxxx.es/
+scp "C:\proyectos\web\enviar.php" usuario@192.168.1.10:/var/www/xxxxx.es/
+scp -r "C:\proyectos\web\emusica_academia" usuario@192.168.1.10:/var/www/xxxxx.xxxxx.es/
+scp -r "C:\proyectos\web\emusica_gestion" usuario@192.168.1.10:/var/www/xxxxx.xxxxx.es/
 ```
 
 ¡Consejo! Si ves que algo en este punto no se muestra como toca revisa los permisos

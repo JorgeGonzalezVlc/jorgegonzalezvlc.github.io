@@ -4,12 +4,12 @@ title: "Sistema de detección de phishing inteligente"
 date: 2026-05-16
 categories: [Desarrollo e IA, Blue Team]
 tags: [IA, Python, Docker, Phishing, AI Agents, Blue Team]
+description: "Detector de phishing para Gmail en Python que combina un motor de reglas, un análisis con Claude actuando como analista SOC y la reputación de las URL en VirusTotal, y devuelve una puntuación de riesgo, la técnica de MITRE ATT&CK y una acción recomendada."
 image:
   path: /assets/img/posts/covers/Phishing-Detector.webp
   alt: "Detector de phishing — Gmail, LLM y VirusTotal en Docker"
 ---
 
-# 🛡️ Phishing Detector
 
 Sistema de detección inteligente de phishing por email mediante IA, desarrollado en Python.
 
@@ -160,12 +160,7 @@ Análisis de 3 emails reales.
 
 
 
-## Autor
-
-Jorge González — [LinkedIn](https://www.linkedin.com/in/jorge-gonz%C3%A1lez-gonz%C3%A1lez-5740614b/)
-
-
-## Enlace a proyectyo completo
+## Código
 
 Detector-Phishing — [Github](https://github.com/JorgeGonzalezVlc/phishing-detector)
 

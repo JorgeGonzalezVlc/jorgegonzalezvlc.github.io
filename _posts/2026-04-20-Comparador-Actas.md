@@ -4,12 +4,12 @@ title: "Lector de Actas con IA: Verificando la fidelidad de documentos oficiales
 date: 2026-04-20
 categories: [Desarrollo e IA]
 tags: [IA, Python, LLM, AI Agents, NLP]
+description: "Herramienta que contrasta el audio de una reunión con su acta oficial: transcribe con Whisper, compara con un LLM local (Ollama y Mistral) y devuelve coincidencias, omisiones, excesos, discrepancias y un porcentaje de fidelidad."
 image:
   path: /assets/img/posts/covers/Comparador-Actas.webp
   alt: "Lector de actas con IA — Verificar documentos oficiales con LLMs"
 ---
 
-# 🎙️ Lector de Actas con IA
 
 ## El problema que resuelve
 

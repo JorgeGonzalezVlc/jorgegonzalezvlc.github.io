@@ -4,6 +4,7 @@ title: "Análisis de correo de phishing"
 date: 2026-01-08
 categories: [Blue Team]
 tags: [Phishing, Forense, Blue Team]
+description: "Análisis de un correo que suplanta a PayPal: señales de alerta, cabeceras con un return-path ajeno, una URL alojada en un servicio de almacenamiento en la nube, su reputación en inteligencia de amenazas, el impacto y la mitigación."
 image:
   path: /assets/img/posts/covers/analisis-phishing.webp
   alt: "Análisis de un correo de phishing — Cabeceras, enlaces e indicadores"

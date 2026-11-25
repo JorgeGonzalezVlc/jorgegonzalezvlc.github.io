@@ -4,12 +4,13 @@ title: "SOC-ML: aplicando Machine Learning a logs reales de Wazuh"
 date: 2026-07-10
 categories: [Desarrollo e IA, Blue Team]
 tags: [ML, Wazuh, Python, Isolation Forest, Random Forest, KMeans, Blue Team, SIEM]
+description: "Machine Learning sobre casi 4.000 alertas reales de mi Wazuh: Isolation Forest para detectar anomalías, Random Forest para clasificar la severidad y KMeans para agrupar comportamientos, con la preparación de los datos en pandas y los resultados leídos en contexto."
 image:
   path: /assets/img/posts/covers/SOC-ML-Wazuh.webp
   alt: "SOC-ML — Machine learning sobre logs de Wazuh"
 ---
 
-Aqui mi primer proyecto de Machine Learning sobre logs reales de mi laboratorio de ciberseguridad.
+Este es mi primer proyecto de Machine Learning aplicado a logs reales de mi laboratorio de ciberseguridad.
 
 La idea es la siguiente: tengo Wazuh corriendo en casa con un par de agentes conectados (hay un post que lo explica) y quería ver qué podía sacar con ML sin tocar datos de internet. Podría haber descargado un dataset de [HuggingFace](https://huggingface.co/datasets) pero prefería una experiencia más realista aunque los datos sean más limitados.
 
@@ -166,8 +167,3 @@ El código está disponible en [GitHub](https://github.com/JorgeGonzalezVlc/SOC-
 - matplotlib
 - Wazuh SIEM
 
----
-
-## Autor
-
-Jorge — [GitHub](https://github.com/jorgegonzalezvlc)

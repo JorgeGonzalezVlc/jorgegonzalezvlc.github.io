@@ -4,12 +4,12 @@ title: "Active Directory: Kerberoasting"
 date: 2026-06-08
 categories: [Red Team, Blue Team]
 tags: [Active Directory, Kerberoasting, Red Team, Blue Team, Windows]
+description: "Qué es Kerberoasting, cómo se ejecuta con Rubeus y se rompen los tickets con Hashcat o John the Ripper, y la parte defensiva: prevención, detección y una cuenta señuelo para cazarlo."
 image:
   path: /assets/img/posts/covers/ADKerberoasting.webp
   alt: "Kerberoasting — Ataque y detección en Active Directory"
 ---
 
-# Kerberoasting
 
 ## ¿Qué es?
 

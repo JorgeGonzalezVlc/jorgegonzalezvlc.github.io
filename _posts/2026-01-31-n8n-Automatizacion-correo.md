@@ -4,13 +4,13 @@ title: "Automatización inteligente de correos con n8n y OpenAI"
 date: 2026-01-31
 categories: [Desarrollo e IA]
 tags: [IA, Docker, Python, AI Agents, n8n]
+description: "Un agente de n8n montado en local con Docker que lee el correo de Gmail, lo procesa con un modelo de OpenAI y responde y organiza la bandeja de entrada de forma automática."
 image:
   path: /assets/img/posts/covers/n8n-Automatizacion-correo.webp
   alt: "Correo inteligente con n8n — Automatización con agentes de IA"
 ---
 
 
-# 📧 Automatización de correo con n8n
 
 En este proyecto vamos a crear una herramienta de automatización de correo electrónico utilizando **n8n**.
 

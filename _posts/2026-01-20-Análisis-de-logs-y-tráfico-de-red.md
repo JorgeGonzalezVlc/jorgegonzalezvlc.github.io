@@ -4,6 +4,7 @@ title: "Análisis de logs y tráfico de red"
 date: 2026-01-20
 categories: [Blue Team]
 tags: [Forense, Log Analysis, PCAP, Blue Team]
+description: "Análisis de las alertas de un IDS (JSON con jq) y de una captura de red (PCAP): correlación por la IP del atacante, explotación de un bypass de autorización en Bonitasoft (CVE-2022-25237), confirmación del compromiso en el tráfico y persistencia, con mapeo a MITRE ATT&CK."
 image:
   path: /assets/img/posts/covers/Análisis-de-logs-y-tráfico-de-red.webp
   alt: "Logs y tráfico de red — Forense con Wireshark y PCAP"

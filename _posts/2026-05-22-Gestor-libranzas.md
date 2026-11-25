@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Gestor de libranzas: las reglas de un convenio de músicos, convertidas en una app con Flask y SQLite"
-date: 2026-11-25 12:00:00 +0100
+date: 2026-05-22 12:00:00 +0200
 categories: [Desarrollo e IA, Python]
 tags: [Python, Flask, Flask-Login, SQLite, Bootstrap, RBAC, Nóminas]
 description: "Aplicación web para gestionar quién libra, quién le sustituye y cuánto cobra cada uno en las orquestas de varios musicales: solicitudes con aprobación, calendario y plantilla por función, bolsas de vacaciones y horas sindicales, y nóminas a final de mes. Y cómo resolví los bloqueos de SQLite al aprobar solicitudes."
@@ -12,7 +12,7 @@ image:
 
 En la orquesta de un musical, cada atril tiene un **titular**. Cuando el titular **libra** (vacaciones, horas sindicales, un examen, una cita médica…), toca un **cover**: un músico que se sabe el libro y le sustituye en esa función. Parece sencillo hasta que lo multiplicas por varios teatros, dos funciones algunos días, covers que no pueden estar en dos atriles a la vez y un convenio que dice qué cuenta como vacaciones, cuántas horas sindicales tiene cada uno y qué se descuenta de la nómina.
 
-Este gestor de libranzas lleva todo eso: quién libra, quién cubre, qué falta por cubrir y cuánto cobra cada uno a final de mes. Si has leído el post de la [web de la CMTM](/posts/CMTM-Web/), el contexto te sonará.
+Este gestor de libranzas lleva todo eso: quién libra, quién cubre, qué falta por cubrir y cuánto cobra cada uno a final de mes.
 
 > La aplicación maneja datos laborales reales, así que **todo lo que se ve aquí es inventado**: la empresa («Producciones Ejemplo»), los teatros (Alameda, Mirador y Ribera), los músicos y los importes. Las capturas son de una copia que monté aparte, con el mismo esquema de base de datos pero sin una sola fila de los datos reales.
 {: .prompt-info }

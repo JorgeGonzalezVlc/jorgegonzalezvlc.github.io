@@ -12,7 +12,7 @@ image:
 
 Me pidieron montar la web de un evento (en concreto, una boda) y lo aproveché para construir algo que tenía ganas de hacer bien: una **API REST en FastAPI** en producción, con usuarios reales, autodocumentada y endurecida a nivel de sistema. Este post va de dos cosas que me importan mucho: **diseñar la API con seguridad desde el principio** y **endurecer el servicio** una vez desplegado.
 
-> Todo lo relacionado con datos de invitados se ha omitido. Las capturas son de la documentación de la API y de la configuración del servicio, sin datos personales.
+> Todo lo relacionado con datos de invitados se ha omitido. Las capturas son de la documentación de la API y de la configuración del servicio, sin datos personales, y en las de la terminal he tapado el usuario y el nombre del servidor.
 {: .prompt-info }
 
 ---
@@ -64,7 +64,16 @@ def generar_saludo(invitado) -> str:
         return SALUDO_GENERICO            # cualquier fallo -> genérico
 ```
 
-Esto viene de un error real: una versión nueva de `httpx` rompió la creación del cliente de `anthropic`, y como estaba **fuera** del try/except, tumbó el arranque de toda la app. La lección: **una función accesoria (la IA) nunca debe poder derribar una función esencial (entrar)**. Metí todo dentro del try y fijé las versiones en `requirements.txt`.
+Esto viene de un error real: una versión nueva de `httpx` rompió la creación del cliente de `anthropic` (`TypeError: ... unexpected keyword argument 'proxies'`), y como estaba **fuera** del try/except, tumbó el arranque de toda la app. La lección: **una función accesoria (la IA) nunca debe poder derribar una función esencial (entrar)**. Metí todo dentro del try y fijé las versiones en `requirements.txt`.
+
+---
+
+## Otros fallos reales del camino
+
+Llevo un registro de los fallos que aparecieron, porque son de los que se repiten. Dos de ellos dejan una lección que vale para cualquier proyecto:
+
+- **El service worker servía versiones viejas.** La app de juegos se instala en el móvil como PWA, y la primera versión cacheaba con la estrategia «caché primero». Resultado: una vez instalada, nunca volvía a pedir la versión nueva al servidor. Lo cambié a «red primero, caché de respaldo»: si hay conexión, siempre manda el servidor.
+- **Una clave de API en el archivo equivocado.** En algún momento, la clave de Anthropic acabó en `.env.example`, la plantilla que existe precisamente para no llevar secretos, en vez de en `.env`. La moví a su sitio y limpié la plantilla. La lección es que los secretos se escapan por los archivos que *parecen* inofensivos: las plantillas, los ejemplos y las capturas.
 
 ---
 
@@ -72,10 +81,10 @@ Esto viene de un error real: una versión nueva de `httpx` rompió la creación 
 
 La app corre como servicio de systemd detrás de nginx. Pero un servicio, por defecto, puede hacer **mucho más de lo que necesita**: ver todos los procesos, escribir en medio sistema de ficheros, cargar módulos del kernel… Si alguien comprometiera la app, todo eso sería su punto de partida.
 
-systemd trae un montón de opciones de *sandboxing* integradas. Para medir cuánto gana, se usa `systemd-analyze security`, que da una nota de exposición. El servicio recién creado salía fatal:
+systemd trae un montón de opciones de *sandboxing* integradas. Para medir cuánto gana, se usa `systemd-analyze security`, que da una nota de exposición de 0 a 10: cuanto más baja, mejor. El servicio recién creado sacaba un **8,3**:
 
 ![Nivel de exposición antes del hardening](/assets/img/posts/api-eventos/02-systemd-antes.webp){: .shadow }
-_Exposición "EXPOSED" / "UNSAFE": el servicio puede hacer casi de todo_
+_8,3 «EXPOSED»: el servicio puede hacer casi de todo_
 
 Así que escribí un *drop-in* de endurecimiento que le quita a la app todo lo que no usa:
 
@@ -93,7 +102,7 @@ Las opciones clave:
 | `SystemCallFilter=@system-service` | Solo las llamadas al sistema propias de un servicio |
 | `NoNewPrivileges` / `RestrictSUIDSGID` | No puede escalar privilegios |
 
-Tras recargar y reiniciar, la misma herramienta da una nota muchísimo mejor, y la app sigue funcionando exactamente igual. **Gran parte del endurecimiento de un servicio Linux moderno son unas líneas de configuración y cero cambios de código.**
+Tras recargar y reiniciar, la misma herramienta pasa de **8,3 «EXPOSED» a 1,4 «OK»**, y la app sigue funcionando exactamente igual: el `/api/health` de la propia captura responde `{"status":"ok"}`. **Gran parte del endurecimiento de un servicio Linux moderno son unas líneas de configuración y cero cambios de código.**
 
 ---
 

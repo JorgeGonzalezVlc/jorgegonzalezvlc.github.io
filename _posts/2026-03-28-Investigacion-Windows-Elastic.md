@@ -1,192 +1,120 @@
 ---
 layout: post
-title: "Investigación de incidente – Compromiso en host WIN01 (Windows)"
+title: "Investigación de incidente con Elastic: un servidor Windows comprometido, de la fuerza bruta al acceso a LSASS"
 date: 2026-03-28
 categories: [Blue Team]
 tags: [SIEM, Elastic, Forense, Windows, Threat Hunting, Blue Team]
 destacado:
   Blue Team: 4
+description: "Triaje de las alertas de un servidor Windows en Elastic SIEM: separo verdaderos y falsos positivos y reconstruyo la cadena de ataque, desde una sesión SMB anónima y fuerza bruta hasta la persistencia con una tarea programada y el acceso a la memoria de LSASS. Con línea temporal, indicadores, respuesta y mapeo a MITRE ATT&CK."
 image:
   path: /assets/img/posts/covers/Investigacion-Windows-Elastic.webp
-  alt: "Incidente en WIN01 — Investigación con Elastic SIEM · Windows"
+  alt: "Incidente en un servidor Windows — Investigación con Elastic SIEM"
 ---
 
-Investigación completa de un host Windows comprometido, reconstruyendo la cadena de ataque desde la enumeración inicial hasta la persistencia y el intento de robo de credenciales.
+Un servidor Windows acumula alertas en el SIEM. El trabajo de un analista no es darlas todas por buenas, sino **decidir cuáles son ataque y cuáles ruido**, y unir las que son ataque en una historia coherente. Este es el informe de esa investigación, alerta por alerta.
 
-Durante el análisis del host **WIN01** se identificaron múltiples alertas asociadas a actividades maliciosas que abarcan distintas fases del ciclo de ataque.
-
-La correlación temporal y contextual de los eventos confirma un **compromiso completo del sistema**, incluyendo:
-
-- Enumeración inicial sin autenticación
-- Ataques de fuerza bruta sobre servicios SMB
-- Acceso remoto con privilegios elevados
-- Enumeración post-compromiso
-- Ejecución de malware
-- Establecimiento de persistencia
-- Intentos de robo de credenciales mediante acceso a LSASS
-
-El incidente refleja un escenario realista de intrusión en un entorno Windows empresarial.
-
+> Escenario de práctica de análisis en Elastic SIEM. He **anonimizado** los nombres de equipo, las direcciones IP, las cuentas y los archivos, y no incluyo capturas del entorno original.
+{: .prompt-info }
 
 ---
 
-## Línea temporal de la actividad
+## Resumen
 
-### 1. Enumeración mediante sesión SMB anónima
-
-Se detectó un inicio de sesión de red (Logon Type 3) utilizando la cuenta **ANONYMOUS LOGON**, sin credenciales válidas.
-
-Este comportamiento es característico de **Null Session**, técnica utilizada para enumerar recursos compartidos, usuarios o políticas del sistema.
-
-**Clasificación: True Positive**
-
-<img width="1322" height="503" alt="imagen" src="https://github.com/user-attachments/assets/26676af1-d667-4608-a5aa-18f8d8394627" />
-
+| | |
+|---|---|
+| **Activo afectado** | Servidor Windows `WINSRV-02` |
+| **Origen del ataque** | `203.0.113.45` |
+| **Alertas revisadas** | 9: **7 verdaderos positivos** y 2 falsos positivos |
+| **Veredicto** | **Compromiso confirmado.** El atacante entró como `Administrator` por RDP tras un ataque de fuerza bruta, dejó un binario con persistencia y accedió a la memoria de LSASS para robar credenciales. |
 
 ---
 
-### 2. Acceso legítimo al proceso LSASS
+## Línea temporal
 
-Se observó la creación del proceso `lsass.exe` iniciado por `wininit.exe` bajo el contexto **NT AUTHORITY\SYSTEM**.
-
-La relación padre-hijo, la ruta del binario y el contexto de ejecución corresponden con el comportamiento normal del sistema operativo durante el arranque y la gestión de autenticación.
-
-No se detectaron parámetros anómalos, acceso externo ni técnicas de inyección de memoria.
-
-**Clasificación: False Positive**
-
----
-
-### 3. Ataque de fuerza bruta por SMB
-
-Se registraron múltiples intentos fallidos de autenticación desde la IP **10.10.16.14** en un corto periodo de tiempo.
-
-El patrón observado —alto volumen, origen único, ventana temporal reducida y uso repetitivo de credenciales— es característico de un **ataque automatizado de fuerza bruta o password spraying**.
-
-
-**Clasificación: True Positive**
-
-<img width="1078" height="464" alt="imagen" src="https://github.com/user-attachments/assets/a097a620-6b18-4546-906c-67ed39581e16" />
-
+| # | Evento | Evidencia | Veredicto |
+|---|---|---|---|
+| 1 | Sesión SMB anónima | Inicio de sesión de red (4624, tipo 3) con `ANONYMOUS LOGON` | ✅ Ataque |
+| 2 | `lsass.exe` creado por `wininit.exe` | Arranque normal del sistema, como `SYSTEM` | ⚪ Falso positivo |
+| 3 | Fuerza bruta por SMB | Ráfaga de inicios de sesión fallidos (4625) desde `203.0.113.45` | ✅ Ataque |
+| 4 | Enumeración tras el acceso | Lectura de `ConsoleHost_history.txt` y ejecución de `winPEAS.ps1` | ✅ Ataque |
+| 5 | Acceso remoto privilegiado | Inicio de sesión RDP (4624, tipo 10) como `Administrator` desde `203.0.113.45` | ✅ Ataque |
+| 6 | Binario sospechoso en AppData | `C:\Users\Administrator\AppData\Local\rev_shell.exe` | ✅ Ataque |
+| 7 | Persistencia | Tarea programada que ejecuta ese binario periódicamente | ✅ Ataque |
+| 8 | Acceso a la memoria de LSASS | `powershell.exe` abre el proceso `lsass.exe` | ✅ Ataque |
+| 9 | `svchost.exe` accede a LSASS | Operación habitual del sistema, como `SYSTEM` | ⚪ Falso positivo |
 
 ---
 
-### 4. Enumeración de historial de PowerShell
+## Análisis
 
-El usuario ejecutó comandos para acceder a: ``ConsoleHost_history.txt``
+### Reconocimiento y acceso (alertas 1, 3 y 5)
 
+La primera señal es un inicio de sesión de red con **`ANONYMOUS LOGON`**: una *null session*, la técnica clásica para enumerar recursos compartidos, usuarios y políticas sin credenciales. Poco después llega una **ráfaga de inicios de sesión fallidos** desde una única IP, en una ventana de tiempo muy corta y con credenciales repetitivas: el patrón de una herramienta automática de fuerza bruta o *password spraying*.
 
-Este archivo almacena el historial de comandos ejecutados en sesiones de PowerShell.  
-El acceso a este recurso suele realizarse durante fases de **enumeración post-compromiso**, ya que puede revelar:
+La alerta que cierra el círculo es la 5: un **inicio de sesión RDP correcto como `Administrator` desde esa misma IP**. Por separado, cada evento podría tener otra explicación; juntos y en ese orden, indican que el atacante enumeró, adivinó la contraseña y entró con privilegios de administración.
 
-- Credenciales en texto plano
-- Scripts ejecutados previamente
-- Información sensible sobre tareas administrativas
+### Enumeración, payload y persistencia (alertas 4, 6 y 7)
 
-El uso de `winPEAS.ps1` confirma que esta actividad forma parte de una **enumeración automatizada del sistema**.
+Ya dentro, el atacante lee `ConsoleHost_history.txt`, el historial de PowerShell, donde a menudo quedan credenciales o comandos administrativos. Además, ejecuta **winPEAS**, una herramienta de enumeración automática de vías de escalada.
 
-**Clasificación: True Positive**
+Después aparece `rev_shell.exe` en `AppData\Local`, una carpeta en la que un usuario puede escribir y ejecutar sin privilegios adicionales y que suele estar menos vigilada. El nombre ya apunta a una *reverse shell*. Una **tarea programada** que lo ejecuta periódicamente le asegura volver a entrar aunque se cierre la sesión o se reinicie el servidor.
 
-<img width="1332" height="533" alt="imagen" src="https://github.com/user-attachments/assets/fc6f545b-bd59-46f3-b4f5-d4f09fdc6971" />
+### Robo de credenciales (alerta 8)
 
+La alerta más grave: **`powershell.exe` accediendo a la memoria de `lsass.exe`**. LSASS guarda en memoria el material de autenticación de las sesiones abiertas. Que un PowerShell interactivo lo abra es un indicador clásico de **volcado de credenciales**, con herramientas como Mimikatz o técnicas equivalentes. A partir de aquí hay que dar por comprometidas las credenciales de todas las cuentas que hayan iniciado sesión en el servidor.
 
----
+### Por qué hay dos falsos positivos (alertas 2 y 9)
 
-### 5. Acceso privilegiado desde IP sospechosa
+LSASS también es noticia cuando no hay ataque, y saber distinguirlo es la mitad del trabajo:
 
-Se detectó un inicio de sesión remoto exitoso (Logon Type 10 – RDP) con la cuenta **Administrator** desde la IP **10.10.16.14**, previamente asociada a actividad maliciosa.
-El evento confirma el establecimiento de una **sesión interactiva remota con privilegios elevados**, lo que indica que el atacante logró comprometer credenciales administrativas.
+- **`wininit.exe` → `lsass.exe`** como `SYSTEM` es exactamente como arranca Windows. La relación padre-hijo, la ruta del binario y el contexto son los esperados, sin parámetros raros ni inyección.
+- **`svchost.exe` accediendo a LSASS** como `SYSTEM` forma parte de la operativa normal de los servicios del sistema.
 
-
-**Clasificación: True Positive**
-
-<img width="1472" height="490" alt="imagen" src="https://github.com/user-attachments/assets/bdb66854-bfcb-4997-adf2-b71a21a3992c" />
-
+La diferencia con la alerta 8 no está en el proceso de destino, sino en **quién lo abre y desde qué contexto**.
 
 ---
 
-### 6. Creación de malware en AppData
+## Indicadores (anonimizados)
 
-Se identificó la creación del archivo: ``C:\Users\Administrator\AppData\Local\revshell1337.exe``
-
-
-El directorio **AppData\Local** es comúnmente utilizado por atacantes para almacenar payloads, ya que permite ejecución sin privilegios adicionales y suele estar excluido de controles estrictos.
-
-El nombre del archivo sugiere una **reverse shell**, indicando preparación para comunicación remota con infraestructura atacante.
-
-
-**Clasificación: True Positive**
-
-<img width="1345" height="443" alt="imagen" src="https://github.com/user-attachments/assets/4074ebdb-b016-474c-9873-0c7d4fec7f77" />
-
+| Tipo | Valor |
+|---|---|
+| IP del atacante | `203.0.113.45` |
+| Cuenta comprometida | `Administrator` |
+| Binario | `C:\Users\Administrator\AppData\Local\rev_shell.exe` |
+| Persistencia | Tarea programada que ejecuta el binario anterior |
+| Herramientas | `winPEAS.ps1` |
 
 ---
 
-### 7. Persistencia mediante tarea programada
+## Respuesta recomendada
 
-Se creó una tarea programada que ejecuta el binario anterior de forma periódica.
-
-Este mecanismo permite mantener acceso persistente al sistema tras el compromiso.
-
-**Clasificación: True Positive**
-
-<img width="1325" height="230" alt="imagen" src="https://github.com/user-attachments/assets/0ebb0d4e-eed3-4928-bf50-c596c5baa9b8" />
-
-
----
-
-### 8. Acceso sospechoso a memoria de LSASS
-
-Se observó el proceso `powershell.exe` accediendo a la memoria de `lsass.exe`.
-
-El acceso a LSASS por procesos no autorizados es un indicador crítico de **Credential Dumping**, técnica utilizada para extraer hashes o credenciales en texto plano (por ejemplo, mediante Mimikatz).
-
-
-**Clasificación: True Positive**
-
-<img width="1358" height="485" alt="imagen" src="https://github.com/user-attachments/assets/b3703f9b-7934-4fc7-b465-97c855a60471" />
-
-
----
-
-### 9. Actividad legítima del sistema
-
-Posteriormente se observó `svchost.exe` accediendo a LSASS bajo el contexto SYSTEM.
-
-Este comportamiento forma parte de las operaciones normales del sistema y no presenta indicadores de actividad maliciosa.
-
-**Clasificación: False Positive**
-
----
-
-## Conclusión
-
-El análisis de eventos confirma un **compromiso completo del host WIN01**, siguiendo una cadena de ataque típica:
-
-1. Reconocimiento inicial (Null Session)
-2. Ataque de fuerza bruta
-3. Acceso privilegiado
-4. Enumeración post-compromiso
-5. Ejecución de malware
-6. Persistencia
-7. Intento de robo de credenciales
-
-Este caso refleja un escenario realista de intrusión y destaca la importancia de la correlación temporal de eventos en un entorno SIEM para la detección temprana de incidentes.
+1. **Contener:** aislar `WINSRV-02` de la red y bloquear `203.0.113.45` en el perímetro.
+2. **Erradicar:** eliminar la tarea programada y el binario, y buscar el mismo indicador en el resto de equipos.
+3. **Credenciales:** cambiar la contraseña de `Administrator` y de todas las cuentas con sesión en el servidor, porque LSASS ha sido leído.
+4. **Endurecer:**
+   - Política de bloqueo de cuentas.
+   - Sin acceso anónimo por SMB.
+   - RDP solo a través de VPN y con MFA.
+   - **Protección de LSA** (`RunAsPPL`) o Credential Guard.
 
 ---
 
 ## Técnicas observadas (MITRE ATT&CK)
 
-- T1078 – Valid Accounts  
-- T1110 – Brute Force  
-- T1059 – Command and Scripting Interpreter  
-- T1003 – OS Credential Dumping  
-- T1547 – Persistence  
-- T1105 – Ingress Tool Transfer  
-- T1046 – Network Service Discovery
+| Táctica | Técnica |
+|---|---|
+| Descubrimiento | T1135 Network Share Discovery · T1087 Account Discovery · T1082 System Information Discovery |
+| Acceso a credenciales | T1110 Brute Force · T1552 Unsecured Credentials · **T1003.001 LSASS Memory** |
+| Acceso inicial / movimiento | T1078 Valid Accounts · T1021.001 Remote Desktop Protocol |
+| Ejecución | T1059.001 PowerShell |
+| Persistencia | T1053.005 Scheduled Task |
+| Mando y control | T1105 Ingress Tool Transfer |
 
+---
 
+## Lo que me llevo
 
-
-
-
+- **La correlación es lo que convierte alertas en un incidente.** La IP de la fuerza bruta es la misma que la del RDP correcto; sin esa unión, son dos alertas sueltas.
+- **El proceso de destino no basta.** Que algo toque LSASS no es malicioso por sí mismo; lo es *quién* lo toca y *desde dónde*.
+- **Un falso positivo bien justificado también es trabajo.** Descartarlo con argumentos es lo que evita que el equipo pierda tiempo y que las alertas reales se ahoguen en ruido.

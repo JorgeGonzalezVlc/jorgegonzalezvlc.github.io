@@ -105,8 +105,13 @@ layout: default
       several areas (e.g. an AD attack lab categorised Blue Team and tagged Red Team).
     {%- endcomment -%}
     {%- capture post_cats -%}{% for c in post.categories %}{{ c | slugify }} {% endfor %}{% for t in post.tags %}{{ t | slugify }} {% endfor %}{%- endcapture -%}
+    {%- comment -%}
+      Featured posts per area: front matter `destacado: { Blue Team: 1, Sistemas: 3 }`.
+      When an area filter is active, its featured posts go first in that order (home-filter.js).
+    {%- endcomment -%}
+    {%- capture post_featured -%}{% for d in post.destacado %}{{ d[0] | slugify }}:{{ d[1] }} {% endfor %}{%- endcapture -%}
     {% assign main_area = post.categories | first | slugify %}
-    <article class="card-wrapper card post-card area-{{ main_area }}" data-cats="{{ post_cats | strip }}">
+    <article class="card-wrapper card post-card area-{{ main_area }}" data-cats="{{ post_cats | strip }}" data-featured="{{ post_featured | strip }}">
       <a href="{{ post.url | relative_url }}" class="post-preview">
         {% if post.image %}
           {% assign src = post.image.path | default: post.image %}
@@ -132,8 +137,11 @@ layout: default
               <span class="meta-sep" aria-hidden="true">·</span>
             {% endif %}
             {% include datetime.html date=post.date lang=lang %}
+            {% if post.destacado %}
+              <span class="post-featured"><i class="fas fa-star" aria-hidden="true"></i>Destacado</span>
+            {% endif %}
             {% if post.pin %}
-              <span class="post-pin" title="Destacado"><i class="fas fa-thumbtack"></i></span>
+              <span class="post-pin" title="Fijado"><i class="fas fa-thumbtack"></i></span>
             {% endif %}
           </div>
         </div>

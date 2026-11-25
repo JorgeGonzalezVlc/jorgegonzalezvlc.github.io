@@ -602,6 +602,30 @@ body:has(#post-list.post-grid) #tail-wrapper {
   color: var(--text-muted-color);
 }
 
+/* "Destacado" badge: only visible while an area filter is active (home-filter.js adds .is-featured) */
+.post-featured {
+  display: none;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--area-line, var(--accent));
+  border-radius: 999px;
+  background: var(--area-soft, var(--accent-soft));
+  color: var(--area-text, var(--accent));
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.post-card.is-featured .post-featured {
+  display: inline-flex;
+}
+
+.post-card.is-featured .post-pin {
+  margin-left: 0.5rem;
+}
+
 #post-list.post-grid .post-card .card-body .card-title {
   font-size: 1.12rem !important;
   font-weight: 700;

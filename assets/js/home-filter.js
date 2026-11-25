@@ -19,10 +19,34 @@
   var heading = document.getElementById('proyectos');
   var defaultLabel = label ? label.textContent : '';
 
+  /* rank of a card among the featured posts of an area (data-featured="blue-team:1 sistemas:3") */
+  function featuredRank(card, area) {
+    var pairs = (card.dataset.featured || '').split(' ');
+    for (var i = 0; i < pairs.length; i++) {
+      var kv = pairs[i].split(':');
+      if (kv[0] === area && kv[1]) return parseInt(kv[1], 10);
+    }
+    return Infinity;
+  }
+
+  /* inside an area, its featured posts go first; "Todos" keeps the original order (pinned, then by date) */
+  function reorder(area) {
+    var order = cards.map(function (card, i) {
+      return { card: card, i: i, rank: area === 'todos' ? Infinity : featuredRank(card, area) };
+    });
+    order.sort(function (a, b) { return (a.rank - b.rank) || (a.i - b.i); });
+    order.forEach(function (o) {
+      o.card.classList.toggle('is-featured', o.rank !== Infinity);
+      grid.appendChild(o.card);
+    });
+  }
+
   function apply(name, scroll) {
     var button = buttons.filter(function (b) { return b.dataset.filter === name; })[0] || buttons[0];
     var wanted = button.dataset.cats ? button.dataset.cats.split(' ') : [];
     var shown = 0;
+
+    reorder(button.dataset.filter);
 
     cards.forEach(function (card) {
       var cats = (card.dataset.cats || '').split(' ');

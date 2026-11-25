@@ -4,6 +4,8 @@ title: "Investigación de incidente – Compromiso en host WIN01 (Windows)"
 date: 2026-03-28
 categories: [Blue Team]
 tags: [SIEM, Elastic, Forense, Windows, Threat Hunting, Blue Team]
+destacado:
+  Blue Team: 4
 image:
   path: /assets/img/posts/covers/Investigacion-Windows-Elastic.webp
   alt: "Incidente en WIN01 — Investigación con Elastic SIEM · Windows"

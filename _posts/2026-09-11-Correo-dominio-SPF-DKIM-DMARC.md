@@ -4,6 +4,8 @@ title: "Correo de un dominio bien hecho: SPF, DKIM y DMARC para que llegue y no 
 date: 2026-09-11 10:00:00 +0200
 categories: [Sistemas, Blue Team]
 tags: [DNS, SPF, DKIM, DMARC, Correo, Antispoofing, Cloudflare, Deliverability, Blue Team]
+destacado:
+  Sistemas: 4
 description: "Cómo configuré el correo de un dominio propio con recepción por Cloudflare Email Routing y envío autenticado: SPF, DKIM y DMARC para asegurar la entrega y evitar que suplanten la marca. Los tres registros que casi nadie configura bien."
 image:
   path: /assets/img/posts/covers/Correo-dominio-SPF-DKIM-DMARC.webp

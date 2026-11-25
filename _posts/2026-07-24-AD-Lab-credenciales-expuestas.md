@@ -4,6 +4,8 @@ title: "AD Attack Detection (I): credenciales expuestas en Active Directory y c√
 date: 2026-07-24 10:00:00 +0200
 categories: [Blue Team, Active Directory]
 tags: [Active Directory, Kerberos, AS-REP Roasting, GPP Passwords, Detection Engineering, PowerShell, Event Logs, Blue Team, Red Team]
+destacado:
+  Blue Team: 2
 description: "Laboratorio propio de AD: reproduzco AS-REP Roasting, GPP Passwords y credenciales en recursos compartidos y en atributos de usuario, y construyo para cada ataque su detecci√≥n en PowerShell a partir de Event IDs reales."
 image:
   path: /assets/img/posts/covers/AD-Lab-credenciales-expuestas.webp

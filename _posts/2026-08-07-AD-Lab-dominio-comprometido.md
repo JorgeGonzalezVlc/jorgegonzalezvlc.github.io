@@ -4,6 +4,9 @@ title: "AD Attack Detection (II): del abuso de GPO al Golden Ticket, y cómo ver
 date: 2026-08-07 10:00:00 +0200
 categories: [Blue Team, Active Directory]
 tags: [Active Directory, DCSync, Golden Ticket, Kerberos Delegation, GPO, Mimikatz, Rubeus, Detection Engineering, PowerShell, Blue Team, Red Team]
+destacado:
+  Blue Team: 1
+  Red Team: 3
 description: "Segunda parte del laboratorio de AD: abuso de permisos sobre GPOs, DCSync, Golden Ticket y Constrained Delegation (S4U), con su evidencia en el DC y AD-ThreatDetector, un detector en PowerShell que genera un informe diario."
 pin: true
 image:

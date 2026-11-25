@@ -4,6 +4,8 @@ title: "Plataforma del comité de empresa: Django, red aislada e IA que pseudoni
 date: 2026-11-06 10:00:00 +0200
 categories: [Desarrollo e IA, Sistemas]
 tags: [Python, Django, IA, Anthropic, RGPD, Privacidad, Pseudonimización, Tailscale, Proxmox, Docker, Backups]
+destacado:
+  Desarrollo e IA: 1
 description: "Plataforma interna para un comité de empresa: Django sobre una red aislada sin puertos públicos, con auditoría de accesos y una capa de IA que pseudonimiza los datos personales antes de enviarlos a un LLM y los revierte al volver. Privacidad por diseño."
 image:
   path: /assets/img/posts/covers/Plataforma-comite-IA.webp

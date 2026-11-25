@@ -4,6 +4,8 @@ title: "GRC en la práctica: análisis de riesgos y categorización de un sistem
 date: 2026-10-30 10:00:00 +0200
 categories: [GRC]
 tags: [GRC, ENS, Análisis de riesgos, Cumplimiento, MAGERIT, RGPD, ISO 27001, Gobierno de la seguridad]
+destacado:
+  GRC: 2
 description: "Recorrido práctico por un análisis de riesgos y la categorización de un sistema según el Esquema Nacional de Seguridad (ENS): inventario de activos, amenazas, probabilidad e impacto, nivel del sistema y selección de medidas del Anexo II."
 image:
   path: /assets/img/posts/covers/GRC-analisis-riesgos-ENS.webp

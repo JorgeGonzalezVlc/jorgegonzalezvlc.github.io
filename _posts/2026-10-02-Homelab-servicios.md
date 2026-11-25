@@ -4,6 +4,8 @@ title: "Homelab (III): llenando el servidor de servicios — Jellyfin, Nextcloud
 date: 2026-10-02 10:00:00 +0200
 categories: [Sistemas]
 tags: [Proxmox, Homelab, Linux, Docker, LXC, ZFS, Jellyfin, Nextcloud, Syncthing, Nube privada]
+destacado:
+  Sistemas: 2
 description: "Tercera entrega del homelab sobre Proxmox: añado una nube privada con Nextcloud, sincronización con Syncthing y un servidor multimedia con Jellyfin acelerado por GPU, sobre almacenamiento ZFS, todo autoalojado y sin abrir puertos."
 image:
   path: /assets/img/posts/covers/Homelab-servicios.webp

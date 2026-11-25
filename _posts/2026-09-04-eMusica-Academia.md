@@ -4,6 +4,8 @@ title: "e-Música Academia: plataforma de cursos por suscripción con Flask, Str
 date: 2026-09-04 10:00:00 +0200
 categories: [Desarrollo e IA, Python]
 tags: [Python, Flask, SQLAlchemy, Stripe, Webhooks, Nginx, Gunicorn, Cloudflare, Proxmox, Linux]
+destacado:
+  Desarrollo e IA: 4
 description: "Plataforma web de formación musical en producción: área de alumnos, panel de administración, progreso, suscripciones recurrentes con Stripe vía webhooks, vídeo por CDN y despliegue en mi propio servidor sin abrir puertos."
 image:
   path: /assets/img/posts/covers/eMusica-Academia.webp

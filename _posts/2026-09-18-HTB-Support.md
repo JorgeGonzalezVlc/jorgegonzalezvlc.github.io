@@ -4,6 +4,8 @@ title: "HTB Support: credenciales en un binario y escalada por delegación en Ac
 date: 2026-09-18 10:00:00 +0200
 categories: [Red Team, HackTheBox]
 tags: [HTB, Active Directory, SMB, LDAP, BloodHound, RBCD, Kerberos, Red Team, Blue Team]
+destacado:
+  Red Team: 2
 description: "Writeup de la máquina retirada Support de HackTheBox: credenciales embebidas en una herramienta interna, enumeración con LDAP y BloodHound, y escalada a administrador del dominio mediante delegación basada en recursos (RBCD)."
 image:
   path: /assets/img/posts/covers/HTB-Support.webp

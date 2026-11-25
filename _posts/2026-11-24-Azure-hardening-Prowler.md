@@ -4,6 +4,8 @@ title: "Endureciendo un entorno Azure desde cero y auditándolo con Prowler (CSP
 date: 2026-11-24 10:00:00 +0200
 categories: [GRC]
 tags: [Azure, Cloud Security, CSPM, Prowler, CIS, Hardening, Entra ID, RBAC, Gobernanza, GRC]
+destacado:
+  GRC: 1
 description: "Preparo en Azure un destino seguro para los backups de mi homelab y lo trato como un ejercicio de seguridad cloud: revisión de identidad, despliegue de la base, auditoría CSPM con Prowler contra los marcos CIS y remediación a partir del informe (sin acceso anónimo, sin clave compartida, RBAC de mínimo privilegio, versionado anti-ransomware, endurecimiento de Entra)."
 image:
   path: /assets/img/posts/covers/Azure-hardening-Prowler.webp
